@@ -1,0 +1,59 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Admin.Empaques.IndexModel
+
+<div class="card w-50 shadow-lg" style="margin:auto">
+    <div class="card-header bg-info text-white" style="font-weight:bold;">
+        <span style="font-size: 25px;">Empaques</span>
+        <a asp-page="/Briefs/Admin/Empaques/Create" class="btn btn-primary" style="float:right;">
+            <i class="bi bi-plus-square"></i> Nuevo Empaque
+        </a>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            @if (Model.Empaques?.Count() > 0)
+            {
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Html.LabelFor(m => m.Empaques!.ElementAt(0).Id)</th>
+                            <th scope="col">@Html.LabelFor(m => m.Empaques!.ElementAt(0).Name)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var empaque in Model.Empaques)
+                        {
+                            <tr>
+                                <td>@empaque.Id</td>
+                                <td>@empaque.Name</td>
+                                <td align="right">
+                                    <a asp-route-id="@empaque.Id" asp-page="Edit" class="btn btn-success btn-sm">Editar</a>
+                                    <button asp-page-handler="Borrar" asp-route-id="@empaque.Id" onclick="return confirm('¿Borrar el registro?')" class="btn btn-danger btn-sm">Borrar</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No hay empaques disponibles.</p>
+            }
+        </form>
+    </div>
+</div>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var message = '@TempData["Message"]';
+            if (message) {
+                toastr.success(message, 'Éxito', { timeOut: 5000, positionClass: 'toast-top-center' });
+            }
+        });
+    </script>
+}

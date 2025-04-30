@@ -1,0 +1,88 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.AdminUser.Cotizaciones.RechazadasModel
+@{
+}
+
+<div class="wrapper" style="margin:auto;">
+    <div class="card shadow-lg">
+    <div class="card-header bg-info text-white" style="font-weight:bold;">
+        <span style="font-size: 25px;">Cotizaciones Rechazadas</span>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            @if (Model.Briefs?.Count() > 0)
+            {
+                    <div class="table-responsive">
+                        <table id="briefscostos" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).Consecutivo)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).ClientFullName)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).Title)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).CreateDate)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).FechaRequerida)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).Design)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).StatusDesign)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).DesignerAsignado)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).FechaRespuestaDesign)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).StatusCostos)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).CosteadorAsignado)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).FechaRespuestaCostos)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var brief in Model.Briefs!)
+                        {
+                            <tr>
+                                <td>@brief.Consecutivo</td>
+                                <td>@brief.ClientFullName</td>
+                                <td>@brief.Title</td>
+                                <td>@brief.CreateDate</td>
+                                <td>@brief.FechaRequerida</td>
+                                <td>
+                                    @if (brief.Design == true)
+                                    {
+                                        <span>Si</span>
+                                    }
+                                    else
+                                    {
+                                        <span>No</span>
+                                    }
+                                </td>
+                                <td>@brief.StatusDesign</td>
+                                <td>@brief.DesignerAsignado</td>
+                                <td>@brief.FechaRespuestaDesign</td>
+                                <td>@brief.StatusCostos</td>
+                                <td>@brief.CosteadorAsignado</td>
+                                <td>@brief.FechaRespuestaCostos</td>
+                                <td>
+                                    <a asp-route-Id="@brief.BriefId" asp-page="Details" class="btn btn-outline-info p-1"><i class="bi bi-eye-fill"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                    </div>
+            }
+            else
+            {
+                <p>No hay cotizaciones rechazadas</p>
+            }
+        
+    </div>
+</div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="~/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/js/dataTablesConfig.js"></script>
+<!-- Agregar el siguiente script para cambiar los estilos de acuerdo al estado -->
+<script>
+    $(document).ready(function () {
+        $("td:contains('Aceptado')").css("color", "green");
+        $("td:contains('Pendiente')").css("color", "orange");
+        $("td:contains('Rechazado')").css("color", "red");
+        $("td:contains('Entregado')").css("color", "blue");
+    });
+</script>

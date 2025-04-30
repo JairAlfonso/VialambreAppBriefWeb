@@ -1,0 +1,25 @@
+{
+  "profiles": {
+    "VialambreAppTest1": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:7239;http://localhost:5135"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:2038",
+      "sslPort": 44391
+    }
+  }
+}

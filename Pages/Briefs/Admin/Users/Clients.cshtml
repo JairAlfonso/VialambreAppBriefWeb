@@ -1,0 +1,58 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Admin.Users.ClientsModel
+@{
+}
+
+<div class="card w-80 shadow-lg" style="margin:auto">
+    <div class="card-header bg-info text-white" style="font-weight:bold;">
+        <div class="row">
+            <div class="col-sm-10 mt-1">
+                <h2 style="font-size: 25px; font-weight:bold;">Asesores</h2>
+            </div>
+            @* <div class="col-sm-2 mt-1">
+            <a asp-page="/Briefs/Client/Realizadas" class="btn btn-success form-control">Regresar</a>
+            </div> *@
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            @if (Model.Clients != null && Model.Clients.Any())
+            {
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Html.LabelFor(m=>m.UserVM!.RolName)</th>
+                            <th scope="col">@Html.LabelFor(m=>m.UserVM!.FullName)</th>
+                            <th scope="col">@Html.LabelFor(m=>m.UserVM!.Document)</th>
+                            <th scope="col">@Html.LabelFor(m=>m.UserVM!.Email)</th>
+                            <th scope="col">@Html.LabelFor(m=>m.UserVM!.CreateDate)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var admin in Model.Clients)
+                        {
+                            <tr>
+                                <td>@admin.RolName</td>
+                                <td>@admin.FullName</td>
+                                <td>@admin.Document</td>
+                                <td>@admin.Email</td>
+                                <td>@admin.CreateDate</td>
+                                <td>
+                                    <div>
+                                        <a asp-route-Id="" asp-page="Details" class="btn btn-outline-info p-1"><i class="bi bi-eye-fill" style="color:black"></i></a>                                       
+                                        <a asp-route-Id="" asp-page-handler="Rechazar" class="btn btn-outline-danger p-1"><i class="bi bi-x-lg" style="color:black"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No hay clientes en la base de datos.</p>
+            }
+        </form>
+    </div>
+</div>

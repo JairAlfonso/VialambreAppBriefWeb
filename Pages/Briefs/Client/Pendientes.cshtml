@@ -1,0 +1,103 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Client.PendientesModel
+@using VialambreAppTest1.Utility
+@inject IServiceProvider serviceProvider
+@{ 
+    var fechasFestivasUtility = new FechasFestivas();
+}
+<!-- Añade una clase wrapper alrededor del contenido para facilitar el centrado -->
+<div class="container mt-1 mx-auto">
+    <div class="card shadow-lg">
+        <div class="card-header bg-info text-white">
+            <h4>Cotizaciones Pendientes</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                @if (Model.Pendientes?.Count() > 0)
+                {
+                    <!-- Añade una clase table-responsive para hacer que la tabla sea responsive -->
+                    <div class="table-responsive">
+                        <table id="briefscostos" class="table table-bordered table-hover table-striped table-compact display">
+                            <thead>
+                                <tr class="thead-dark">
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).Consecutivo)</th>
+                                    <th scope="col" class="col-2">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).ClientFullName)</th>
+                                    <th scope="col" class="col-2">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).Title)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).CreateDate)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).FechaRequerida)</th>
+                                    <th id="fixed-width-cell truncate" scope="col">DH</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).DesignerAsignado)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).StatusDesign)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).CosteadorAsignado)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).StatusCostos)</th>
+                                    <th scope="col" class="col-sm-1">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var brief in Model.Pendientes!)
+                                {
+                                    <tr>
+                                        <td class="truncate">@brief.Consecutivo</td>
+                                        <td class="truncate">@brief.ClientFullName</td>
+                                        <td class="truncate">@brief.Title</td>
+                                        <td class="truncate">@brief.CreateDate.ToString("d/MM/yy")</td>
+                                        <td class="truncate">@brief.FechaRequerida.ToString("d/MM/yy")</td>
+                                        <td id="fixed-width-cell">
+                                            @if (brief.FechaRequerida >= brief.CreateDate)
+                                            {
+                                                // Usa el método CalculateBusinessDaysDifference para obtener la diferencia en días hábiles
+                                                int businessDaysDiff = fechasFestivasUtility.CalculateBusinessDaysDifference(brief.CreateDate, brief.FechaRequerida);
+                                                @businessDaysDiff
+                                            }
+                                            else
+                                            {
+                                            // Maneja casos donde FechaRequerida es anterior a CreateDate
+                                                <span class="text-danger"> - </span>
+                                            }
+                                        </td>
+                                        <td class="truncate">@brief.DesignerAsignado</td>
+                                        <td class="truncate" class="status-@(brief.StatusDesign.ToString().ToLower() ?? "")">@brief.StatusDesign</td>
+                                        <td class="truncate">@brief.CosteadorAsignado</td>
+                                        <td class="truncate" class="status-@(brief.StatusCostos.ToString().ToLower() ?? "")">@brief.StatusCostos</td>
+                                        <td class="truncate">
+                                            <div class="btn-group" role="group">
+                                                <a asp-route-Id="@brief.BriefId" asp-page="Details" title="Ver detalles del Brief"
+                                                   class="btn btn-outline-info btn-sm"><i class="bi bi-eye-fill "></i></a>
+                                                <a id="btnCancelar" asp-page="/Briefs/Client/Cancelar" asp-route-briefid="@brief.BriefId" title="Cancelar Brief"               class="btn btn-outline-danger btn-sm"><i class="bi bi-x-circle-fill"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                } 
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center">No hay Briefs pendientes</p>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="~/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/js/dataTablesConfig.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<!--script para cambiar los estilos de acuerdo al estado -->
+<script src="~/js/script.js" defer></script>
+<script src="~/js/pendientes.js" defer></script>
+<script src="~/js/recotizadas.js" defer></script>
+<script src="~/js/tablefilter/datefilter.js" defer></script>
+@if (Model.Pendientes?.Count() > 0)
+{
+    <script>
+        $(document).ready(function () {
+            var pendientesCount = @Model.Pendientes.Count()
+            toastr.warning('¡Tienes ' + pendientesCount + ' cotizacion pendiente!', 'Atención', { timeOut: 30000, positionClass: 'toast-top-center' });
+        });
+
+    </script>
+}

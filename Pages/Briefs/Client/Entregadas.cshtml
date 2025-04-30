@@ -1,0 +1,75 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Client.EntregadasModel
+@{
+}
+<div class="container mt-1">
+    <div class="card shadow-lg">
+        <div class="card-header bg-info text-white">
+            <h4>Cotizaciones entregadas</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                @if (Model.Entregadas?.Count() > 0)
+                {
+                    <div class="table-responsive">
+                        <table id="briefscostos" class="table table-bordered table-hover table-striped table-compact display">
+                            <thead>
+                                <tr class="thead-dark">
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).Consecutivo)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).ClientFullName)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).Title)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).CreateDate)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).FechaRequerida)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).DesignerAsignado)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).StatusDesign)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).CosteadorAsignado)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).StatusCostos)</th>
+                                    <th scope="col" class="truncate col-sm-1">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var brief in Model.Entregadas!)
+                                {
+                                    <tr>
+                                        <td class="truncate">@brief.Consecutivo</td>
+                                        <td class="truncate">@brief.ClientFullName</td>
+                                        <td class="truncate">@brief.Title</td>
+                                        <td>@brief.CreateDate.ToString("dd/MM/yy")</td>
+                                        <td>@brief.FechaRequerida.ToString("dd/MM/yy")</td>
+                                        <td class="truncate">@brief.DesignerAsignado</td>
+                                        <td class="truncate">@brief.StatusDesign</td>
+                                        <td class="truncate">@brief.CosteadorAsignado</td>
+                                        <td class="truncate">@brief.StatusCostos</td>
+                                        <td class="truncate">
+                                            <div>
+                                                <a asp-route-Id="@brief.BriefId" asp-page="Details" title="Ver detalles del brief" class="btn btn-outline-info btn-sm"><i class="bi bi-eye-fill"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p>No hay cotizaciones Entregadas</p>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="~/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/js/dataTablesConfig.js"></script>
+<!-- Agregar el siguiente script para cambiar los estilos de acuerdo al estado -->
+<script src="~/js/script.js" defer></script>
+@if (Model.Entregadas?.Count() > 0){
+    <script>
+        $(document).ready(function () {
+            var pendientesCount = @Model.Entregadas.Count()
+            toastr.warning('¡Tienes ' + pendientesCount + ' cotizaciones entregadas!', 'Atención', { timeOut: 50000, positionClass: 'toast-top-center' });
+        });
+    </script>
+}

@@ -1,0 +1,46 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Admin.Products.IndexModel
+@{
+}
+
+<div class="card w-50 shadow-lg" style="margin:auto">
+    <div class="card-header bg-info text-white" style="font-weight:bold;">
+
+        <span style="font-size: 25px;">Productos</span>
+        <a asp-page="/Briefs/Admin/Products/Create" class="btn btn-primary" style="float:right;"><i class="bi bi-plus-square"></i> Nuevo Producto</a>
+
+    </div>
+    <div class="card-body">
+        <form method="post">
+            @if (Model.Products?.Count() > 0)
+            {
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Html.LabelFor(m => m.Products!.ElementAt(0).Id)</th>
+                            <th scope="col">@Html.LabelFor(m => m.Products!.ElementAt(0).Name)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model.Products)
+                        {
+                            <tr>
+                                <td>@product.Id</td>
+                                <td>@product.Name</td>
+                                <td align="right">
+                                    <a asp-route-id="@product.Id" asp-page="Edit" class="btn btn-success btn-sm">Editar</a>
+                                    <button asp-page-handler="Borrar" asp-route-id="@product.Id" onclick="return confirm('Borrar el registro?')" class="btn btn-danger btn-sm">Borrar</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No hay productos</p>
+            }
+        </form>
+    </div>
+</div>

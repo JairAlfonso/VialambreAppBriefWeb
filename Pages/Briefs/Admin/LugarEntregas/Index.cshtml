@@ -1,0 +1,44 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Admin.LugarEntregas.IndexModel
+@{
+}
+
+<div class="card w-75 mx-auto shadow-lg">
+    <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Lugar de entrega</h5>
+        <a asp-page="/Briefs/Admin/LugarEntregas/Create" class="btn btn-light"><i class="bi bi-plus-square"></i> Nuevo Lugar</a>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            @if (Model.LugarEntrega?.Count() > 0)
+            {
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Html.LabelFor(m => m.LugarEntrega!.ElementAt(0).Id)</th>
+                            <th scope="col" class="truncate">@Html.LabelFor(m => m.LugarEntrega!.ElementAt(0).Name)</th>
+                            <th scope="col" class="truncate">acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var lugarEntrega in Model.LugarEntrega)
+                        {
+                            <tr>
+                                <td>@lugarEntrega.Id</td>
+                                <td class="truncate">@lugarEntrega.Name</td>
+                                <td class="truncate">
+                                    <a asp-route-id="@lugarEntrega.Id" asp-page="Edit" class="btn btn-primary btn-sm">Editar</a>
+                                    <button asp-page-handler="Borrar" asp-route-id="@lugarEntrega.Id" onclick="return confirm('Borrar el registro?')" class="btn btn-danger btn-sm">Borrar</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No hay lugares de entrega registrados</p>
+            }
+        </form>
+    </div>
+</div>

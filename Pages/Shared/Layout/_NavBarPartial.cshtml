@@ -1,0 +1,24 @@
+﻿@* Archivo: _NavBarPartial.cshtml *@
+@{
+    if (User.IsInRole("Admin"))
+    {
+        <partial name="_NavBarAdmin" />
+    }
+    else if (User.IsInRole("AdminUser"))
+    {
+        <partial name="_NavBarAdminUser" />
+    }
+    else if (User.IsInRole("Design"))
+    {
+        <partial name="_NavBarDesign" />
+    }
+    else if (User.IsInRole("Costos"))
+    {
+        <partial name="_NavBarCostos" />
+    }
+    else if (User.IsInRole("Asesor"))
+    {
+        <partial name="_NavBarAsesor" />
+    }
+}
+

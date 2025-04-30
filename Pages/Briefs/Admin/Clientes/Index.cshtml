@@ -1,0 +1,56 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Admin.Clientes.IndexModel
+
+
+<div class="card mb-3 shadow-lg">
+    <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Cliente</h5>
+        <a asp-page="/Briefs/Admin/Clientes/Create" class="btn btn-primary">
+            <i class="bi bi-plus-square"></i> Nuevo Cliente
+        </a>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            @if (Model.Clientes?.Count() > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-nowrap truncate col-sm-1">@Html.LabelFor(m => m.Clientes!.ElementAt(0).Id)</th>
+                                <th scope="col" class="truncate col-sm-2">@Html.LabelFor(m => m.Clientes!.ElementAt(0).Name, "Nombre del Cliente")</th>
+                                <th scope="col" class="truncate col-sm-1">@Html.LabelFor(m => m.Clientes!.ElementAt(0).Document)</th>
+                                <th scope="col" class="truncate col-sm-2">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cliente in Model.Clientes)
+                            {
+                                <tr>
+                                    <td class="text-nowrap">@cliente.Id</td>
+                                    <td class="truncate">@cliente.Name</td>
+                                    <td class="truncate">@cliente.Document</td>
+                                    <td class="truncate">
+                                        <a asp-route-id="@cliente.Id" asp-page="Edit" class="btn btn-success btn-sm">Editar</a>
+                                        <button asp-page-handler="Borrar" asp-route-id="@cliente.Id" onclick="return confirm('Borrar el registro?')" class="btn btn-danger btn-sm">Borrar</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="text-center">No hay clientes</p>
+            }
+        </form>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="~/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/js/dataTablesConfig.js"></script>
+<script src="~/lib/toastr/toastr.min.js"></script> <!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />

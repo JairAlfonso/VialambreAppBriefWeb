@@ -1,0 +1,93 @@
+﻿@page
+@using VialambreAppTest1.Utility;
+@model VialambreAppTest1.Pages.Briefs.Employee.Costos.AsignadasModel
+@{
+}
+<div class="container mt-1 mx-auto">
+    <div class="card shadow-lg">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Cotizaciones asignadas</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                @if (Model.BriefsAsignadosCostos?.Any() == true)
+                {
+                    <div class="table-responsive">
+                        <table id="briefscostos" class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().Consecutivo)</th>
+                                    <th scope="col" class="col-2">@Html.DisplayNameFor(m => m.BriefVM!.First().ClientFullName)</th>
+                                    <th scope="col" class="col-2">@Html.DisplayNameFor(m => m.BriefVM!.First().Title)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().CreateDate)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().FechaRequerida)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().DesignerAsignado)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().StatusDesign)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().CosteadorAsignado)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().StatusCostos)</th>
+                                    <th scope="col" class="col-1">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var brief in Model.BriefsAsignadosCostos)
+                                {
+                                    <tr>
+                                        <td class="truncate">@brief.Consecutivo</td>
+                                        <td class="truncate">@brief.ClientFullName</td>
+                                        <td class="truncate">@brief.Title</td>
+                                        <td class="truncate">@brief.CreateDate.ToString("dd/MM/yy")</td>
+                                        <td class="truncate">@brief.FechaRequerida.ToString("dd/MM/yy")</td>
+                                        <td class="truncate">@brief.DesignerAsignado</td>
+                                        <td class="truncate">@brief.StatusDesign</td>
+                                        <td class="truncate">@brief.CosteadorAsignado</td>
+                                        <td class="truncate">@brief.StatusCostos</td>
+                                        <td class="stylbtn">
+                                            <div class="btn-group" role="group">
+                                                <a asp-route-Id="@brief.BriefId" asp-page="Details" title="Ver detalles" class="btn btn-outline-info btn-sm">
+                                                    <i class="bi bi-eye-fill"></i>
+                                                </a>
+                                                @if (brief.StatusDesign == BriefStatus.Aceptado || brief.StatusDesign == BriefStatus.SinDiseño)
+                                                {
+                                                    <a asp-route-briefid="@brief.BriefId" asp-page="/Briefs/Employee/Costos/Aprobar" title="Entregar"
+                                                       class="btn btn-outline-success btn-sm"><i class="bi bi-check-lg"></i></a>
+                                                    <a asp-route-briefid="@brief.BriefId" asp-page="/Briefs/Employee/Costos/Rechazar" title="Rechazar"
+                                                       class="btn btn-outline-danger btn-sm"><i class="bi bi-x-lg"></i></a>
+                                                    <a asp-route-briefid="@brief.BriefId" asp-page="/Briefs/Employee/Costos/Reasignar" title="Reasignar"
+                                                       class="btn btn-outline-warning btn-sm">
+                                                        <i class="bi bi-arrow-clockwise"></i>
+                                                    </a>
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p>No hay Briefs asignados</p>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="~/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/js/dataTablesConfig.js"></script>
+<!-- Agregar el siguiente script para cambiar los estilos de acuerdo al estado -->
+<script src="~/js/script.js" defer></script>
+<script src="~/js/desing/reasignadasdesingn.js" defer></script>
+<script src="~/js/desing/rechazadas.js" defer></script>
+<script src="~/js/desing/entregadas.js" defer></script>
+@if (Model.BriefsAsignadosCostos?.Count() > 0)
+{
+ <script>
+  $(document).ready(function () {
+   var asignadasCount = @Model.BriefsAsignadosCostos.Count();
+   toastr.warning('¡Tienes ' + asignadasCount + ' cotizaciones asignadas!', 'Atención', { timeOut: 30000, positionClass: 'toast-top-center' });
+  });
+ </script>
+}

@@ -1,0 +1,86 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Client.AprobadasModel
+@{
+}
+<div class="container mt-1 mx-auto">
+    <div class="card shadow-lg">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Cotizaciones aceptadas</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                @if (Model.Aprobadas?.Count() > 0)
+                {
+                    <div class="table-responsive">
+                        <table id="briefscostos" class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).Consecutivo)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).ClientFullName)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).Title)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).CreateDate)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).FechaRequerida)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).DesignerAsignado)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).StatusDesign)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).CosteadorAsignado)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefVM!.ElementAt(0).StatusCostos)</th>
+                                    <th scope="col" class="col-sm-1">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var brief in Model.Aprobadas!)
+                                {
+                                    <tr>
+                                        <td class="truncate">@brief.Consecutivo</td>
+                                        <td class="truncate">@brief.ClientFullName</td>
+                                        <td class="truncate">@brief.Title</td>
+                                        <td class="truncate">@brief.CreateDate.ToString("dd/MM/yyyy")</td>
+                                        <td class="truncate">@brief.FechaRequerida.ToString("dd/MM/yyyy")</td>
+                                        <td class="truncate">@brief.DesignerAsignado</td>
+                                        <td class="truncate">@brief.StatusDesign</td>
+                                        <td class="truncate">@brief.CosteadorAsignado</td>
+                                        <td class="truncate">@brief.StatusCostos</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a asp-route-Id="@brief.BriefId" asp-page="Details" title="Ver detalles del brief" class="btn btn-outline-info btn-sm"><i class="bi bi-eye-fill"></i></a>
+                                                @if (brief.FueRecotizado == false)
+
+                                                {
+                                                    <a id="btnRecotizar" asp-route-Id="@brief.BriefId" asp-page="Recotizar" title="Recotizar este brief" class="btn btn-outline-success btn-sm confirm-recotizar"><i class="bi bi-pencil-fill"></i></a>
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p>No hay cotizaciones aceptadas</p>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="~/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/js/dataTablesConfig.js"></script>
+<!-- Agregar el siguiente script para cambiar los estilos de acuerdo al estado -->
+<script src="~/js/script.js" defer></script>
+<script src="~/js/recotizadas.js" defer></script>
+@if (Model.Aprobadas?.Count() > 0)
+{
+    <script>
+        $(document).ready(function () {
+            var pendientesCount = @Model.Aprobadas.Count()
+            toastr.warning('¡Tienes ' + pendientesCount + ' cotizacion aceptadas!', 'Atención', { timeOut: 50000, positionClass: 'toast-top-center' });
+        });
+
+    </script>
+
+}
+
+

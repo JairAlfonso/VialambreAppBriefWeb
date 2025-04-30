@@ -1,0 +1,45 @@
+﻿@page
+@model VialambreAppTest1.Pages.Users.LoginModel
+@{
+}
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<div class="d-flex justify-content-center mt-3">
+    <div id="login-card" class="card w-100 w-sm-75 w-md-50 w-lg-25 mx-3 mt-3">
+        <div class="text-center mt-2">
+            <a id="my-nav-logo" class="navbar-brand d-flex justify-content-center align-items-center">
+                <img src="/css/imagenes/Imagen.svg" alt="Vialambre: Todo en exhibición" decoding="async" class="rounded-circle" style="width: 60px; height: 60px; margin-bottom: 10px;" />
+            </a>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="email" class="custom-label">Email</label>
+                    <input id="email" asp-for="LoginVM!.Email" class="form-control" placeholder="Correo Electrónico" />
+                    <span asp-validation-for="LoginVM!.Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="pass" class="custom-label">Contraseña</label>
+                    <input id="pass" asp-for="LoginVM!.Password" class="form-control" type="password" placeholder="Contraseña" />
+                    <span asp-validation-for="LoginVM!.Password" class="text-danger"></span>
+                </div>
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" asp-for="LoginVM!.RememberMe" />
+                    <label class="form-check-label">
+                        @Html.DisplayNameFor(m => m.LoginVM!.RememberMe)
+                    </label>
+                </div>
+                <div>
+                    <input type="submit" value="Ingresar" class="btn btn-primary w-100" />
+                </div>
+                <div class="mt-3 text-center">
+                    <a asp-page="/Users/ResetPassword" class="btn btn-link">¿Olvidaste tu contraseña?</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

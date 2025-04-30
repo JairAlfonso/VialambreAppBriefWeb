@@ -1,0 +1,25 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Employee.Costos.RechazarModel
+@{
+}
+<div class="card w-80 shadow-lg mt-3" style="margin:auto">
+    <div class="card-header bg-info text-white" style="font-weight:bold;">
+        <span style="font-size: 25px;">Solicitud rechazada: @Model!.BriefDetails!.Consecutivo</span>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="mt-1">
+                    <label for="Description">Respuesta:</label>
+                    <textarea asp-for="BriefVM!.RespuestaCostos" class="form-control mt-2" rows="4" placeholder="Descripción..." required></textarea>
+                </div> 
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <a asp-page="/Briefs/Employee/Costos/Asignadas" class="btn btn-secondary"><i class="bi bi-x-circle" style="color:white"></i> Cancelar</a>
+            <button asp-page-handler="Rechazar" asp-route-briefid="@Model.BriefDetails.BriefId" class="btn btn-primary"><i class="bi bi-check-circle" style="color:white"></i> Enviar</button>
+        </div>
+    </form>
+</div>

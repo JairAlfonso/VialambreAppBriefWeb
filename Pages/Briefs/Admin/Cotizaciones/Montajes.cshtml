@@ -1,0 +1,68 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Admin.Cotizaciones.MontajesModel
+@{
+}
+
+<div class="wrapper" style="margin:auto;">
+    <div class="card shadow-lg">
+    <div class="card-header bg-info text-white" style="font-weight:bold;">
+        <span style="font-size: 25px;">Montajes</span>
+     </div>
+    <div class="card-body">
+        <div class="table-responsive">
+           @if (Model.Montajes?.Any() == true)
+            {
+                    <div class="table-responsive">
+                        <table id="briefscostos" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Html.DisplayNameFor(m => m.Montajes!.ElementAt(0).Consecutivo)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.Montajes!.ElementAt(0).ClientFullName)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.Montajes!.ElementAt(0).Title)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.Montajes!.ElementAt(0).CreateDate)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.Montajes!.ElementAt(0).StatusDesign)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.Montajes!.ElementAt(0).StatusCostos)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       @foreach (var brief in Model.Montajes!)
+                        {
+                            <tr>
+                                <td>@brief.Consecutivo</td>
+                                <td>@brief.ClientFullName</td>
+                                <td>@brief.Title</td>
+                                <td>@brief.CreateDate</td>
+                                <td>@brief.StatusDesign</td>
+                                <td>@brief.StatusCostos</td>
+                                <td>
+                                    <a asp-route-Id="@brief.BriefId" asp-page="Details" class="btn btn-outline-info p-1"><i class="bi bi-eye-fill"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                    </div>
+            }
+            else
+            {
+                <p>No hay Briefs de montajes</p>
+            }
+
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="~/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/js/dataTablesConfig.js"></script>
+<!-- Agregar el siguiente script para cambiar los estilos de acuerdo al estado -->
+<script>
+    $(document).ready(function () {
+        $("td:contains('Aceptado')").css("color", "green");
+        $("td:contains('Pendiente')").css("color", "orange");
+        $("td:contains('Rechazado')").css("color", "red");
+        $("td:contains('Entregado')").css("color", "blue");
+    });
+</script>

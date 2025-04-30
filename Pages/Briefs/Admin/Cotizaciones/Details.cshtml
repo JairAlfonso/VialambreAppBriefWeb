@@ -1,0 +1,66 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Admin.Cotizaciones.DetailsModel
+@{
+}
+
+<div class="container mx-auto">
+    <div class="card">
+        <div class="card-header bg-info text-white fw-bold">
+            <div class="row">
+                <div class="col-sm-10 mt-1">
+                    <h4 class="card-title">Cotizaciones Pendientes</h4>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                @if (Model.BriefDetails != null)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).Consecutivo)</th>
+                                    <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).ClientFullName)</th>
+                                    <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).ClientDocument)</th>
+                                    <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).Title)</th>
+                                    <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).Description)</th>
+                                    <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).CreateDate)</th>
+                                    <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).Design)</th>
+                                    <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).StatusDesign)</th>
+                                    <th scope="col">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).StatusCostos)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@Model.BriefDetails.Consecutivo</td>
+                                    <td>@Model.BriefDetails.ClientFullName</td>
+                                    <td>@Model.BriefDetails.ClientDocument</td>
+                                    <td>@Model.BriefDetails.Title</td>
+                                    <td>@Model.BriefDetails.Description</td>
+                                    <td>@Model.BriefDetails.CreateDate</td>
+                                    <td>
+                                        @if (@Model.BriefDetails.Design == true)
+                                        {
+                                            <span>Si</span>
+                                        }
+                                        else
+                                        {
+                                            <span>No</span>
+                                        }
+                                    </td>
+                                    <td>@Model.BriefDetails.StatusDesign</td>
+                                    <td>@Model.BriefDetails.StatusCostos</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center">El brief seleccionado no existe o fue borrado de la base de datos.</p>
+                }
+            </form>
+        </div>
+    </div>
+</div>

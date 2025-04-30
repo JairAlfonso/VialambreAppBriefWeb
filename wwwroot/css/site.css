@@ -1,0 +1,139 @@
+html {
+    font-size: 18px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 17px;
+  }
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+    background: url('https://img.freepik.com/vector-premium/fondo-abstracto-azul-blanco-onda-ilustraciones-plantillas_41084-528.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    margin: 0;
+}
+.divider-line {
+    border-bottom: 1px solid #ccc; /* Cambia el color y el estilo de la línea según tus preferencias */
+    margin-bottom: 10px; /* Añade margen inferior para separar los elementos */
+}
+#piezaForm {
+    display: none;
+}
+#briefscostos_filter {
+    float: left;
+    margin-top: 1px;
+}
+#briefscostos_paginate {
+    float: right;
+    margin-top: 10px;
+    padding: 7px;
+}
+#fixed-width-cell {
+    max-width: 10px;
+    white-space: nowrap; /* Evita el word wrap */
+    overflow: hidden; /* Oculta cualquier contenido que desborde */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos (...) si el contenido desborda */
+}
+.card-body p {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    
+}
+.custom-logo {
+    max-width: 180px;
+}
+#my-nav-logo img {
+    max-width: 180px;
+    width: 200px; /* Assuming you still want a fixed width */
+    height: 40px;
+}
+#th, td {
+    max-width: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Evitar que el contenido se rompa en múltiples líneas */
+}
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60px;
+}
+.truncate:hover {
+    overflow: visible;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.stylbtn {
+    min-width: 150px;
+}
+
+
+.fechaserch {
+    max-width: 250px;
+}
+#login-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el contenido verticalmente */
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    max-width: 400px; /* Mantener el ancho si está bien */
+    min-height: 300px; /* Ajustar la altura mínima */
+}
+
+    #login-card .card-body {
+        padding: 2rem; /* Ajustar el padding interno */
+        min-height: 300px; /* Ajustar la altura mínima del cuerpo del card */
+    }
+    #login-card .card-header {
+        background-color: #f8f9fa;
+    }
+    #login-card:hover {
+        border-color: #007bff;
+    }
+    #login-card .card-title {
+        color: #007bff;
+    }
+    #login-card .bi-person-circle {
+        font-size: 24px;
+        margin-right: 10px;
+    }
+    #login-card-container {
+      margin-top: 2rem; /* Ajustar el margen superior según sea necesario */
+    }
+.custom-label {
+    color: #007bff; /* Color personalizado */
+    font-size: 1.25rem; /* Tamaño de fuente personalizado */
+    /*font-weight: bold;  Negrita */
+    font-family: 'Georgia', serif; /* Fuente personalizada */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra del texto */
+}
+.circle-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.mx-auto {
+    margin: auto;
+}
+.icon-opacity {
+    opacity: 0.8;
+}
+
+.chart-size {
+    position: relative;
+    height: 200px;
+    width: 200px;
+}

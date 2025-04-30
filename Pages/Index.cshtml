@@ -1,0 +1,19 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@{
+    if (!User.Identity!.IsAuthenticated)
+    {
+        Response.Redirect("/Users/Login");
+    }
+    else
+    {
+        <div class="text-center">
+            <h1 class="display-4">Vialambre</h1>
+        </div>
+    }
+}

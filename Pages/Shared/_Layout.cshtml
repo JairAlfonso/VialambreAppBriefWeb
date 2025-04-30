@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://www.vialambre.com/wp-content/uploads/2023/01/icono-1.png" sizes="32x32">
+    <title>VialambreTest1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom shadow-sm mb-3">
+            <div class="container">
+                <a id="my-nav-logo" class="navbar-brand" asp-area="" asp-page="/Index">
+                    <img src="https://www.vialambre.com/wp-content/uploads/2022/11/vialambre-todo-en-exhibicion-logo.svg" alt="Vialambre: Todo en exhibicion" decoding="async" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <partial name="Layout/_AdminNav" />
+                }
+                else if (User.IsInRole("AdminUser"))
+                {
+                    <partial name="Layout/_AdminUserNav" />
+                }
+                else if (User.IsInRole("Design"))
+                {
+                    <partial name="Layout/_NavBarDesign.cshtml" />
+                }
+                else if (User.IsInRole("Costos"))
+                {
+                    <partial name="Layout/_NavBarCostos.cshtml" />
+                }
+                else if (User.IsInRole("Asesor"))
+                {
+                    <partial name="Layout/_NavBarAsesor.cshtml" />
+                }
+                else
+                {
+                }
+                 
+            </div>
+            <partial name="_LoginPartial" />
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+        <footer class="container d-flex flex-wrap justify-content-center align-items-center ">
+            <div class="d-flex flex-row align-items-center">
+                <span class="text-muted">&copy; 2024 - Vialambre</span>&nbsp;
+                <a href="mailto:diroperacionesadmin@vialambre.co" class="text-primary ml-2" title="Send email">
+                    <i class="bi bi-envelope"></i>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="~/js/script.js" defer></script>
+    <script src="~/js/dashboard/pendingBriefsChart.js" defer></script>
+    <!-- Agrega esta línea en la sección <head> o justo antes del cierre de </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await Component.InvokeAsync("NToastNotify")
+</body>
+</html>

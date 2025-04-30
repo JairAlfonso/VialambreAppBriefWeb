@@ -1,0 +1,155 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Admin.IndexModel
+@{
+    ViewData["Title"] = "Briefs Pendientes";
+}
+<div id="content" class="card w-80 shadow-lg mx-auto">
+    <div class="card-header bg-info text-white font-weight-bold">
+        <span class="h4">KPI</span>
+    </div>
+    <div class="row p-3">
+        <!-- Tarjeta: Total de Briefs y Briefs Pendientes --> 
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Total de Briefs
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                Total de Briefs: @Model.TotalCotizacionesCount<br>
+                                Briefs Pendientes: @Model.PendingBriefsCount<br>
+                                Briefs Aprobadas: @Model.ApprovedBriefsCount<br>
+                                Briefs Cancelados: @Model.CancelledBriefsCount 
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-file-earmark-richtext text-gray-500 fs-1 icon-opacity"></i>
+                        </div>
+                    </div>
+                    <div class="chart-container chart-size">
+                        <canvas id="cotizacionesBriefsChart"></canvas>
+                    </div>
+                    <div class="chart-container chart-size">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjetas adicionales --> 
+        <div class="col-xl-8 col-md-12 mb-4">
+            <div class="row g-3">
+                <!-- Pendientes -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Pendientes
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        @Model.PendingBriefsCount
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="bi bi-file-earmark-diff text-gray-500 fs-1 icon-opacity"></i>
+                                </div>
+                            </div>
+                            <div class="chart-container chart-size">
+                                <canvas id="pendingBriefsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aprobadas -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Aprobadas
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        @Model.ApprovedBriefsCount
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="bi bi-file-earmark-check text-gray-500 fs-1 icon-opacity"></i>
+                                </div>
+                            </div>
+                            <div class="chart-container chart-size">
+                                <canvas id="approvedBriefsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rechazadas -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="card border-left-danger shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                        Rechazadas
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        @Model.RejectedBriefsCount
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="bi bi-file-earmark-x text-gray-500 fs-1 icon-opacity"></i>
+                                </div>
+                            </div>
+                            <div class="chart-container chart-size">
+                                <canvas id="rejectedBriefsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cancelados -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Cancelados
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        @Model.CancelledBriefsCount
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="bi bi-x-octagon text-gray-500 fs-1 icon-opacity"></i>
+                                </div>
+                            </div>
+                            <div class="chart-container chart-size">
+                                <canvas id="cancelledBriefsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="chart-data" type="application/json">
+    @Json.Serialize(new
+        {
+            pendingBriefsCount = Model.PendingBriefsCount,
+            approvedBriefsCount = Model.ApprovedBriefsCount,
+            rejectedBriefsCount = Model.RejectedBriefsCount,
+            cancelledBriefsCount = Model.CancelledBriefsCount,
+            totalCotizaciones = Model.TotalCotizacionesCount,
+            totalBriefsPendientes = Model.PendingBriefsCount,
+            totalBriefsAprobados = Model.ApprovedBriefsCount,
+            newCancelledBriefsCount = Model.CancelledBriefsCount
+        })
+</script>

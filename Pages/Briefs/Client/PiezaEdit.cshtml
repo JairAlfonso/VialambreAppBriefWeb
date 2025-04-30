@@ -1,0 +1,507 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Client.PiezaEditModel
+@{
+}
+
+<div class="card w-80 shadow-lg mt-3" style="margin:auto">
+    <div class="card-header bg-info text-white" style="font-weight:bold;">
+
+        <span style="font-size: 25px;">Editar pieza: @Model!.NumeroPieza!.NumeroPieza</span>
+
+    </div>
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="row">
+
+                    <fieldset class="col-sm-6">
+
+                        <input asp-for="NumeroPieza!.NumeroPieza" name="PiezaDetails.NumeroPieza" type="text" id="numeropieza" class="form-control mt-2" disabled hidden />
+
+
+                        <input asp-for="PiezaDetails!.Consecutivo" name="PiezaDetails.Consecutivo" type="text" id="consecutivo" class="form-control mt-2" value="@Model!.BriefDetails!.Consecutivo" disabled hidden />
+                       
+
+                        <fieldset class="col-sm-12">
+
+                            <div class="row">
+
+                                <div class="col-sm-4 mt-2">
+                                    <label for="PiezaName">Nombre de la pieza:</label>
+                                    <input asp-for="PiezaDetails!.PiezaName" name="PiezaDetails.PiezaName" type="text" id="piezaname" class="form-control mt-2" />
+                                    <span asp-validation-for="PiezaDetails!.PiezaName" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-4 mt-2">
+                                    <label for="NumeroPiezas">Cantidad piezas:</label>
+                                    <input asp-for="PiezaDetails!.CantidadPiezas" name="PiezaDetails.CantidadPiezas" type="text" id="cantidadpieza" class="form-control mt-2" />
+                                    <span asp-validation-for="PiezaDetails!.CantidadPiezas" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-4 mt-2">
+                                    <label for="Cargue">Cargue pieza (Kg):</label>
+                                    <input asp-for="PiezaDetails!.Cargue" name="PiezaDetails.Cargue" type="text" id="cargue" class="form-control mt-2" />
+                                    <span asp-validation-for="PiezaDetails!.Cargue" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+
+                                <div class="divider-line mt-3">
+                                    <h5>Material:</h5>
+                                </div>
+                                <div>
+
+                                    <div class="row">
+
+                                        <fieldset class="col-sm-6">
+
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Tubo">Tubo</label>
+                                                <input asp-for="PiezaDetails!.Tubo" name="PiezaDetails.Tubo" class="form-check-input" type="checkbox" id="tubo" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Alambre">Alambre</label>
+                                                <input asp-for="PiezaDetails!.Alambre" name="PiezaDetails.Alambre" class="form-check-input" type="checkbox" id="alambre" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Lamina">Lámina</label>
+                                                <input asp-for="PiezaDetails!.Lamina" name="PiezaDetails.Lamina" class="form-check-input" type="checkbox" id="lamina" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Madera">Madera</label>
+                                                <input asp-for="PiezaDetails!.Madera" name="PiezaDetails.Madera" class="form-check-input" type="checkbox" id="madera" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Formica">Fórmica</label>
+                                                <input asp-for="PiezaDetails!.Formica" name="PiezaDetails.Formica" class="form-check-input" type="checkbox" id="formica" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Ninguno">Ninguno</label>
+                                                <input asp-for="PiezaDetails!.NingunMaterial" name="PiezaDetails.NingunMaterial" class="form-check-input" type="checkbox" id="ningunmaterial" value="true" />
+                                            </div>
+
+                                        </fieldset>
+
+                                        <fieldset class="col-sm-6">
+
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Polietileno$">Polietileno</label>
+                                                <input asp-for="PiezaDetails!.Polietileno" name="PiezaDetails.Polietileno" class="form-check-input" type="checkbox" id="polietileno" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Acrilico">Acrílico</label>
+                                                <input asp-for="PiezaDetails!.Acrilico" name="PiezaDetails.Acrilico" class="form-check-input" type="checkbox" id="acrilico" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Ps$">PS</label>
+                                                <input asp-for="PiezaDetails!.Ps" name="PiezaDetails.Ps" class="form-check-input" type="checkbox" id="ps" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Pp">PP</label>
+                                                <input asp-for="PiezaDetails!.Pp" name="PiezaDetails.Pp" class="form-check-input" type="checkbox" id="pp" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Mdf">MDF</label>
+                                                <input asp-for="PiezaDetails!.Mdf" name="PiezaDetails.Mdf" class="form-check-input" type="checkbox" id="mdf" value="true" />
+                                            </div>
+
+                                        </fieldset>
+
+                                    </div>
+                                    
+                                    <div>
+                                        <input asp-for="PiezaDetails!.MaterialInput" name="PiezaDetails.MaterialInput" type="text" class="form-control mt-2" id="material" placeholder="Otro..." />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-6">
+
+                                <div class="divider-line mt-3">
+                                    <h5>Medidas:</h5>
+                                </div>
+
+                                <div class="col-sm-12 mt-1">
+                                    <input asp-for="PiezaDetails!.PiezaAlto" name="PiezaDetails.PiezaAlto" type="text" id="piezaalto" class="form-control" placeholder="Alto..." />
+                                </div>
+                                <div class="col-sm-12 mt-3">
+                                    <input asp-for="PiezaDetails!.PiezaAncho" name="PiezaDetails.PiezaAncho" type="text" id="piezaancho" class="form-control" placeholder="Ancho..." />
+                                </div>
+                                <div class="col-sm-12 mt-3">
+                                    <input asp-for="PiezaDetails!.PiezaFondo" name="PiezaDetails.PiezaFondo" type="text" id="piezafondo" class="form-control" placeholder="Fondo..." />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        @if (@Model!.PiezaDetails!.ArchivoPieza != null)
+                        {
+                            <div class="divider-line mt-2" style="display: flex; justify-content: space-between; align-items: center;">
+                                <h5>Imagen de referencia:</h5>
+                                <div>
+
+                                    <a asp-page-handler="EliminarArchivo" asp-route-briefid="@Model!.BriefDetails!.BriefId" asp-route-numPieza="@Model!.PiezaDetails!.NumeroPieza"><i class="bi bi-trash3-fill" style="color:black"></i></a>
+                                                                                             
+                                </div>
+                            </div>
+
+                            <div>
+
+                                <label class="mb-2">Archivo adjunto:</label>
+
+                                @if (!string.IsNullOrEmpty(@Model.PiezaDetails.ArchivoPieza))
+                                {
+                                    if (@Model.PiezaDetails.ArchivoPieza.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                                    @Model.PiezaDetails.ArchivoPieza.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                                    @Model.PiezaDetails.ArchivoPieza.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
+                                    @Model.PiezaDetails.ArchivoPieza.EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <i class="bi bi-file-image"></i>
+                                        //<a href="@Model!.BriefDetails!.RespuestaCostosInput" target="_blank">Ver imagen</a>
+                                        <a href="@Url.Content("~/" + @Model.PiezaDetails.ArchivoPieza)" target="_blank">Ver imagen</a>
+                                    }
+                                    else if (@Model.PiezaDetails.ArchivoPieza.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <i class="bi bi-file-earmark-pdf-fill"></i>
+                                        //<a href="@pieza.ArchivoPieza target="_blank">Ver archivo</a>
+                                        <a href="@Url.Content("~/" + @Model.PiezaDetails.ArchivoPieza)" target="_blank">Ver archivo</a>
+                                    }
+                                    else if (@Model.PiezaDetails.ArchivoPieza.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase) ||
+                                    @Model.PiezaDetails.ArchivoPieza.EndsWith(".xls", StringComparison.OrdinalIgnoreCase) ||
+                                    @Model.PiezaDetails.ArchivoPieza.EndsWith(".docx", StringComparison.OrdinalIgnoreCase) ||
+                                    @Model.PiezaDetails.ArchivoPieza.EndsWith(".doc", StringComparison.OrdinalIgnoreCase) || @Model.PiezaDetails.ArchivoPieza.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <i class="bi bi-file-earmark-text-fill"></i>
+                                        //<a href="@pieza.ArchivoPieza target="_blank">Descargar</a>
+                                        <a href="@Url.Content("~/" + @Model.PiezaDetails.ArchivoPieza)" target="_blank">Descargar</a>
+                                    }
+                                    else if (@Model.PiezaDetails.ArchivoPieza.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) || @Model.PiezaDetails.ArchivoPieza.EndsWith(".rar", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <i class="bi bi-file-earmark-zip-fill"></i>
+                                        //<a href="@pieza.ArchivoPieza target="_blank">Descargar</a>
+                                        <a href="@Url.Content("~/" + @Model.PiezaDetails.ArchivoPieza)" target="_blank">Descargar</a>
+                                    }
+                                    else
+                                    {
+                                        <i class="bi bi-question-square"></i>
+                                        //<a href="@pieza.ArchivoPieza target="_blank">Descargar</a>
+                                        <a href="@Url.Content("~/" + @Model.PiezaDetails.ArchivoPieza)" target="_blank">Descargar</a>
+                                    }
+                                }
+                                else
+                                {
+                                    <i class="bi bi-file-earmark-excel-fill"></i>
+                                    <span>Sin archivo adjunto</span>
+                                }
+
+                                <div>
+                                    <img src="@Url.Content("~/" + @Model.PiezaDetails.ArchivoPieza)" alt="Imagen de la Pieza" class="img-fluid" />
+                                </div>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <input asp-for="PiezaDetails!.FilePieza" type="file" id="archivospieza" class="form-control mt-3" onchange="DisplayArchivosCostos(event)" />
+                                <div class="mt-3">
+                                    <img src="" id="archivoscostosview" class="w-70 img-thumbnail" />
+                                </div>
+                            </div>
+                        }
+                        
+
+                    </fieldset>
+
+                    <fieldset class="col-sm-6">
+
+                        <div class="col-sm-4 mt-2">
+                            <label>Contiene publicidad:</label>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <input asp-for="PiezaDetails!.Publicidad" class="form-check-input" type="radio" id="publicidadsi" value="true" />
+                            <label class="form-check-label" for="publicidadsi">Si</label>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <input asp-for="PiezaDetails!.Publicidad" class="form-check-input" type="radio" id="publicidadno" value="false" />
+                            <label class="form-check-label" for="publicidadno">No</label>
+                        </div>
+
+                        <div id="medidaspublicidad" class="row">
+
+                            <div class="col-sm-6 mt-2">
+
+                                <label for="Item1">Item:</label>
+                                <input asp-for="PiezaDetails!.Item1name" name="PiezaDetails.Item1name" type="text" id="item1name" class="form-control mt-2" placeholder="Ejem. Cabezote..." />
+
+                            </div>
+
+                            <div class="col-sm-3 mt-2">
+
+                                <label for="Item1Alto">Alto:</label>
+                                <input asp-for="PiezaDetails!.Item1Alto" name="PiezaDetails.Item1Alto" type="text" id="item1alto" class="form-control mt-2" />
+
+                            </div>
+
+                            <div class="col-sm-3 mt-2">
+
+                                <label for="Item1Ancho">Ancho:</label>
+                                <input asp-for="PiezaDetails!.Item1Ancho" name="PiezaDetails.Item1Ancho" type="text" id="item1ancho" class="form-control mt-2" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-6 mt-1">
+
+                                <input asp-for="PiezaDetails!.Item2name" name="PiezaDetails.Item2name" type="text" id="item2name" class="form-control mt-1" placeholder="Ejem. Cenefa..." />
+
+                            </div>
+
+                            <div class="col-sm-3 mt-1">
+
+                                <input asp-for="PiezaDetails!.Item2Alto" name="PiezaDetails.Item2Alto" type="text" id="item2alto" class="form-control mt-1" />
+
+                            </div>
+
+                            <div class="col-sm-3 mt-1">
+
+                                <input asp-for="PiezaDetails!.Item2Ancho" name="PiezaDetails.Item2Ancho" type="text" id="item2ancho" class="form-control mt-1" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-6 mt-1">
+
+                                <input asp-for="PiezaDetails!.Item3name" name="PiezaDetails.Item3name" type="text" id="item3name" class="form-control mt-1" placeholder="Ejem. Laterales..." />
+
+                            </div>
+
+                            <div class="col-sm-3 mt-1">
+
+                                <input asp-for="PiezaDetails!.Item3Alto" name="PiezaDetails.Item3Alto" type="text" id="item3name" class="form-control mt-1" />
+
+                            </div>
+
+                            <div class="col-sm-3 mt-1">
+
+                                <input asp-for="PiezaDetails!.Item3Ancho" name="PiezaDetails.Item3Ancho" type="text" id="item3name" class="form-control mt-1" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-6 mt-1">
+
+                                <input asp-for="PiezaDetails!.Item4name" name="PiezaDetails.Item4name" type="text" id="item4name" class="form-control mt-1" placeholder="Ejem. Otro..." />
+
+                            </div>
+
+                            <div class="col-sm-3 mt-1">
+
+                                <input asp-for="PiezaDetails!.Item4Alto" name="PiezaDetails.Item4Alto" type="text" id="item4name" class="form-control mt-1" />
+
+                            </div>
+
+                            <div class="col-sm-3 mt-1">
+
+                                <input asp-for="PiezaDetails!.Item4Ancho" name="PiezaDetails.Item4Ancho" type="text" id="item4ancho" class="form-control mt-1" />
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+
+                                <div class="mt-3">
+                                    <label for="Tintas">Tíntas:</label>
+                                    <input asp-for="PiezaDetails!.Tintas" name="PiezaDetails.Tintas" type="text" id="tintas" class="form-control mt-2" />
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-6">
+
+                                <div class="d-inline-flex mt-5">
+
+                                    <div class="p-1">
+                                        <label asp-for="PiezaDetails!.Color"></label>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <input class="col-sm-6" name="PiezaDetails.Color" type="color" id="color" asp-for="PiezaDetails!.Color" />
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+
+                                <div class="divider-line mt-3">
+                                    <h5>Acabados:</h5>
+                                </div>
+
+                                <div>
+
+                                    <div class="row">
+
+                                        <fieldset class="col-sm-6">
+
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Laminado">Laminado</label>
+                                                <input asp-for="PiezaDetails!.Laminado" name="PiezaDetails.Laminado" class="form-check-input" type="checkbox" id="laminado" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Troquelado">Troquelado</label>
+                                                <input asp-for="PiezaDetails!.Troquelado" name="PiezaDetails.Troquelado" class="form-check-input" type="checkbox" id="troquelado" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Refilado">Refilado</label>
+                                                <input asp-for="PiezaDetails!.Refilado" name="PiezaDetails.Refilado" class="form-check-input" type="checkbox" id="refilado" value="true" />
+                                            </div>
+
+                                        </fieldset>
+
+                                        <fieldset class="col-sm-6">
+
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Termodoblado">Termodoblado</label>
+                                                <input asp-for="PiezaDetails!.Termodoblado" name="PiezaDetails.Termodoblado" class="form-check-input" type="checkbox" id="termodoblado" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Termoformado">Termoformado</label>
+                                                <input asp-for="PiezaDetails!.Termoformado" name="PiezaDetails.Termoformado" class="form-check-input" type="checkbox" id="termoformado" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="NingunAcabado">Ninguno</label>
+                                                <input asp-for="PiezaDetails!.NingunAcabado" name="PiezaDetails.NingunAcabado" class="form-check-input" type="checkbox" id="ningunacabado" value="true" />
+                                            </div>
+
+                                        </fieldset>
+
+                                    </div>
+                                                                       
+                                    <div>
+                                        <input asp-for="PiezaDetails!.AcabadoInput" name="PiezaDetails.AcabadoInput" type="text" class="form-control mt-2" id="acabado" placeholder="Otro..." />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-6">
+
+                                <div class="divider-line mt-3">
+                                    <h5>Acabados y accesorios:</h5>
+                                </div>
+
+                                <div>
+
+                                    <div class="row">
+
+                                        <fieldset class="col-sm-6">
+
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Ruedas">Ruedas</label>
+                                                <input asp-for="PiezaDetails!.Ruedas" name="PiezaDetails.Ruedas" class="form-check-input" type="checkbox" id="ruedas" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Niveladores">Niveladores</label>
+                                                <input asp-for="PiezaDetails!.Niveladores" name="PiezaDetails.Niveladores" class="form-check-input" type="checkbox" id="niveladores" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Cromado">Cromado</label>
+                                                <input asp-for="PiezaDetails!.Cromado" name="PiezaDetails.Cromado" class="form-check-input" type="checkbox" id="cromado" value="true" />
+                                            </div>
+
+                                        </fieldset>
+
+                                        <fieldset class="col-sm-6">
+
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="Zincado">Zincado</label>
+                                                <input asp-for="PiezaDetails!.Zincado" name="PiezaDetails.Zincado" class="form-check-input" type="checkbox" id="zincado" value="true" />
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label" for="NingunAccesorio">Ninguno</label>
+                                                <input asp-for="PiezaDetails!.NingunAccesorio" name="PiezaDetails.NingunAccesorio" class="form-check-input" type="checkbox" id="ningunaccesorio" value="true" />
+                                            </div>
+
+                                        </fieldset>
+
+                                    </div>
+                                                                        
+                                    <div>
+                                        <input class="form-control mt-2" asp-for="PiezaDetails!.AcabadosyAccesoriosInput" name="PiezaDetails.AcabadosyAccesoriosInput" id="acabadosyaccesorios" placeholder="Otro..." />
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="mt-2">
+                            <textarea asp-for="PiezaDetails!.ComentariosAdicionales" class="form-control mt-2" rows="5" placeholder="Comentarios adicionales..."></textarea>
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-footer text-muted">            
+
+            <a asp-page="/Briefs/Client/BriefReadOnly" asp-route-briefid="@Model!.BriefDetails!.BriefId" class="btn btn-secondary"><i class="bi bi-x-circle" style="color:white"></i> Cancelar</a>
+
+            <button asp-page-handler="AgregarPieza" asp-route-briefid="@Model.BriefDetails.BriefId" asp-route-numPieza="@Model!.NumeroPieza!.NumeroPieza" class="btn btn-primary" value="AgregarPieza"><i class="bi bi-check-circle" style="color:white"></i> Guardar</button>
+           
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    @* //scripts para mostrar imagen previa *@
+
+    <script type="text/javascript">
+        function DisplayArchivosCostos(event) {
+            var archivosCostosInput = document.getElementById('archivospieza');
+            var archivosCostosView = document.getElementById('archivoscostosview');
+
+            archivosCostosView.src = URL.createObjectURL(archivosCostosInput.files[0]);
+        }
+    </script>
+
+}

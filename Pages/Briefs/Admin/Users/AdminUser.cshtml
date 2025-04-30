@@ -1,0 +1,65 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.AdminUser.Users.AdminUserModel
+@{
+}
+
+<div class="card w-80 shadow-lg mx-auto">
+    <div class="card-header bg-info text-white font-weight-bold">
+        <div class="row">
+            <div class="col-sm-10 mt-1">
+                <h2 class="fs-4">Usuario Administrador</h2>
+            </div>
+            <!-- Uncomment this if needed later -->
+            <!--
+            <div class="col-sm-2 mt-1">
+                <a asp-page="/Briefs/Client/Realizadas" class="btn btn-success form-control">Regresar</a>
+            </div>
+            -->
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            @if (Model.AdminUser != null && Model.AdminUser.Any())
+            {
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>@Html.DisplayNameFor(m => m.UserVM!.RolName)</th>
+                            <th>@Html.DisplayNameFor(m => m.UserVM!.FullName)</th>
+                            <th>@Html.DisplayNameFor(m => m.UserVM!.Document)</th>
+                            <th>@Html.DisplayNameFor(m => m.UserVM!.Email)</th>
+                            <th>@Html.DisplayNameFor(m => m.UserVM!.CreateDate)</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var admin in Model.AdminUser)
+                        {
+                            <tr>
+                                <td>@admin.RolName</td>
+                                <td>@admin.FullName</td>
+                                <td>@admin.Document</td>
+                                <td>@admin.Email</td>
+                                <td>@admin.CreateDate.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <div class="d-flex justify-content-around">
+                                        <a asp-route-Id="@admin.Id" asp-page="Details" class="btn btn-outline-info p-1">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </a>
+                                        <a asp-route-Id="@admin.Id" asp-page-handler="Rechazar" class="btn btn-outline-danger p-1">
+                                            <i class="bi bi-x-lg"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-center">No hay usuario administrador en la base de datos.</p>
+            }
+        </form>
+    </div>
+</div>

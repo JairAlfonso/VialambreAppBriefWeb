@@ -1,0 +1,895 @@
+﻿@page
+@using VialambreAppTest1.Models;
+@model VialambreAppTest1.Pages.Briefs.Client.BriefRecotizadoModel
+@{
+    List<Pieza> PiezasAsociadas = Model!.PiezasAsociadas!;
+}
+<div class="card w-80 shadow-lg mt-3" style="margin:auto">
+    <div class="card-header bg-info text-white" style="font-weight:bold;">
+        <span style="font-size: 25px;">Consecutivo del brief: @Model!.BriefDetails!.Consecutivo</span>
+    </div>
+    @if (Model.BriefDetails != null)
+    {
+        <div class="card-body">
+            <div class="row">
+                <div class="divider-line mt-2">
+                    <h5>Información del cliente</h5>
+                </div>
+                <fieldset class="col-sm-6">
+                    <div class="mt-1">
+                        <label for="ClientFullName">Nombre:</label>
+                        <input type="text" id="ClientFullName" class="form-control mt-2" value="@Model.BriefDetails!.ClientFullName" disabled />
+                    </div>
+                </fieldset>
+
+                <fieldset class="col-sm-6">
+
+                    <div class="mt-1">
+                        <label for="ClientDocument">NIT/ID:</label>
+                        <input type="text" id="ClientDocument" class="form-control mt-2" value="@Model.BriefDetails!.ClientDocument" disabled />
+                    </div>
+
+                </fieldset>
+                <fieldset class="col-sm-6">
+
+                    <div class="mt-1">
+                        <label for="ClientDocument">HV:</label>
+                        <input type="text" id="ClientDocument" class="form-control mt-2" value="@Model.BriefDetails!.ClientDocument" disabled />
+                    </div>
+
+                </fieldset>
+
+
+                <div class="divider-line mt-5">
+                    <h5>Detalles del brief</h5>
+                </div>
+
+                <fieldset class="col-sm-6">
+
+                    <div class="row">
+
+                        <fieldset class="col-sm-6">
+                            <div class="mt-1">
+                                <label for="TipoCotizacion">Tipo de cotización:</label>
+                                <input type="text" id="tipoCotizacion" class="form-control mt-1" value="@Model.BriefDetails!.TipoCotizacion" disabled />
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="col-sm-6">
+                            <div class="mt-1">
+                                <label for="FechaCreado">Fecha creado:</label>
+                                <input type="text" id="tipoCotizacion" class="form-control mt-1" value="@Model.BriefDetails!.CreateDate.ToString(" dd /MM/yyyy hh:mm tt")" disabled />
+                            </div>
+                        </fieldset>
+
+                    </div>
+
+                    <div class="row">
+
+                        <fieldset class="col-sm-6">
+
+                            <div class="mt-2">
+                                <label for="Titulo">Nombre de la campaña:</label>
+                                <input type="text" class="form-control mt-1" value="@Model.BriefDetails!.Title" disabled />
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset class="col-sm-6">
+
+                            <div class="mt-2">
+                                <label for="Marca">Nombre de marca:</label>
+                                <input type="text" class="form-control mt-1" value="@Model.BriefDetails!.Marca" disabled />
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                    <div class="mt-2">
+                        <label for="Description">Descripción:</label>
+                        <textarea class="form-control mt-1" rows="3" disabled>@Model.BriefDetails!.Description</textarea>
+                    </div>
+
+                    <div class="row">
+
+                        <fieldset class="col-sm-4">
+
+                            <div class="mt-2">
+                                <label for="Producto">Producto:</label>
+                                <input class="form-control mt-1" value="@Model.BriefDetails!.Producto" disabled />
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset class="col-sm-4">
+
+                            <div class="mt-2">
+                                <label for="FechaRequerida">Fecha requerida:</label>
+                                <input type="text" class="form-control mt-1" value="@Model.BriefDetails!.FechaRequerida.ToString("dd/MM/yyyy")" disabled />
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset class="col-sm-4">
+
+                            <div class="mt-2">
+                                <label for="EntregarEn">Entregar en:</label>
+                                <input type="text" class="form-control mt-1" value="@Model.BriefDetails!.EntregarEn" disabled />
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                    <div class="mt-2">
+                        <label for="ComentariosAdicionales">Comentarios adicionales:</label>
+                        <textarea class="form-control mt-1" rows="3" disabled>@Model.BriefDetails!.ComentariosAdicionales</textarea>
+                    </div>
+
+                </fieldset>
+
+                <fieldset class="col-sm-6">
+
+                    <div class="row">
+
+                        <fieldset class="col-sm-6">
+
+                            <div class="mt-1">
+                                @if (Model.BriefDetails.Design == true)
+                                {
+                                    <label for="Design">Diseño: Si</label>
+                                    <input type="text" class="form-control mt-1" value="@Model.BriefDetails!.StatusDesign" disabled />
+                                }
+                                else
+                                {
+                                    <label for="Design">Diseño: No</label>
+                                    <input type="text" class="form-control mt-1" value="@Model.BriefDetails!.StatusDesign" disabled />
+                                }
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset class="col-sm-6">
+
+                            <div class="mt-1">
+                                <label for="Linea">Linea:</label>
+                                <input type="text" class="form-control mt-1" value="@Model.BriefDetails!.Linea" disabled />
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                    <div class="row">
+
+                        <fieldset class="col-sm-6">
+
+                            <div class="mt-2">
+                                @if (Model.BriefDetails.EsCantidadUnica == true)
+                                {
+                                    <label for="Unidades">Unidades:</label>
+                                    <input type="text" class="form-control mt-1" value="@Model.BriefDetails!.UnidadesInput" disabled />
+                                }
+                                else if (Model.BriefDetails.EsEscala == true)
+                                {
+                                    <label for="Escala">Escala:</label>
+                                    <input type="text" class="form-control mt-1" value="@Model.BriefDetails!.EscalaInput" disabled />
+                                }
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="col-sm-6">
+                            <div class="mt-2">
+                                @if (Model.BriefDetails.Instalacion == true)
+                                {
+                                    <label for="DireccionInstalacion" class="mt-1">Dirección de instalación:</label>
+                                    <input type="text" class="form-control " value="@Model.BriefDetails!.DireccionInstalacion" disabled />
+                                }
+                                else
+                                {
+                                    <label for="DireccionInstalacion" class="mt-1">Dirección de instalación:</label>
+                                    <input type="text" class="form-control " value="@Model.BriefDetails!.DireccionInstalacion" disabled />
+                                }
+                            </div>
+                        </fieldset>
+
+                    </div>
+
+                    <div class="row">
+
+                        <fieldset class="col-sm-6">
+
+                            <div class="mt-2">
+                                @if (Model.BriefDetails.EsCanalVenta == true)
+                                {
+                                    <label for="CanalVenta" class="mt-1">Canal de venta:</label>
+                                    <input type="text" class="form-control mt-1" value="@Model.BriefDetails!.CanalVentaInput" disabled />
+                                }
+                                else
+                                {
+                                    <label for="CanalVenta" class="mt-1">Canal de venta:</label>
+                                    <input type="text" class="form-control " value="@Model.BriefDetails!.CanalVenta" disabled />
+                                }
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset class="col-sm-6">
+
+                            <div class="mt-2">
+                                <div>
+                                    <label for="presupuesto">Presupuesto por unidad:</label>
+                                </div>
+                                <div class="mt-1">
+                                    <input type="text" class="form-control" value="$ @Model.BriefDetails!.PresupuestoUnidad" disabled />
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <div>
+                                    <label for="valorTotal">Valor total cotizado:</label>
+                                </div>
+                               @*  <div class="mt-1">
+                                    <input type="text" class="form-control" value="$ @Model.BriefDetails!.ValorTotalCotizado" disabled />
+                                </div> *@
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                    <div class="mt-2">
+                        <label for="TipoEmpaque">Tipo de empaque:</label>
+                        <input type="text" class="form-control mt-1" value="@Model.BriefDetails!.TipoEmpaque" disabled />
+                    </div>
+
+                    <div class="divider-line mt-3">
+                        <h5>Información suministrada por el cliente:</h5>
+                    </div>
+                    <div class="mt-2">
+                        @{
+                            List<string> trueValues = new List<string>();
+
+                            if (Model.BriefDetails.KeyVisual == true)
+                            {
+                                trueValues.Add("KeyVisual");
+                            }
+                            if (Model.BriefDetails.Artes == true)
+                            {
+                                trueValues.Add("Artes");
+                            }
+                            if (Model.BriefDetails.Planos == true)
+                            {
+                                trueValues.Add("Planos");
+                            }
+                            if (Model.BriefDetails.Logos == true)
+                            {
+                                trueValues.Add("Logos");
+                            }
+                            if (Model.BriefDetails.ManualMarca == true)
+                            {
+                                trueValues.Add("ManualMarca");
+                            }
+                            if (Model.BriefDetails.Boceto == true)
+                            {
+                                trueValues.Add("Boceto");
+                            }
+                            if (Model.BriefDetails.MuestraFisica == true)
+                            {
+                                trueValues.Add("MuestraGrafica");
+                            }
+                            if (Model.BriefDetails.ImagenReferencia == true)
+                            {
+                                trueValues.Add("ImagenReferencia");
+                            }
+                            if (Model.BriefDetails.Ninguna == true)
+                            {
+                                trueValues.Add("Ninguna");
+                            }
+                        }
+                        @string.Join(", ", trueValues)
+                    </div>
+
+                    <div class="mt-2">
+
+                        <label>Archivos para costos:</label>
+
+                        @if (Model.BriefDetails.ArchivosCostosExist == true)
+                        {
+                            if (Model!.BriefDetails!.ArchivosCostos!.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosCostos.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosCostos.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosCostos.EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-image-fill"></i>
+                                <a href="~/@Model!.BriefDetails!.ArchivosCostos" target="_blank">Ver imagen</a>
+                                //<a href="@Model!.BriefDetails!.ArchivosCostos" target="_blank">Ver imagen</a>
+                            }
+                            else if (Model!.BriefDetails!.ArchivosCostos.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-file-earmark-pdf-fill"></i>
+                                <a href="~/@Model!.BriefDetails!.ArchivosCostos" target="_blank">Ver archivo</a>
+                                //<a href="@Model!.BriefDetails!.ArchivosCostos" target="_blank">Ver archivo</a>
+                            }
+                            else if (Model!.BriefDetails!.ArchivosCostos.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosCostos.EndsWith(".xls", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosCostos.EndsWith(".docx", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosCostos.EndsWith(".doc", StringComparison.OrdinalIgnoreCase) || Model!.BriefDetails!.ArchivosCostos.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-file-earmark-text-fill"></i>
+                                <a href="~/@Model!.BriefDetails!.ArchivosCostos" target="_blank">Descargar</a>
+                                //<a href="@Model!.BriefDetails!.ArchivosCostos" target="_blank">Descargar</a>
+                            }
+                            else if (Model!.BriefDetails!.ArchivosCostos.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) || Model!.BriefDetails!.ArchivosCostos.EndsWith(".rar", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-file-zip-fill"></i>
+                                <a href="~/@Model!.BriefDetails!.ArchivosCostos" target="_blank">Descargar</a>
+                                //<a href="@Model!.BriefDetails!.ArchivosCostos" target="_blank">Descargar</a>
+                            }
+                            else
+                            {
+                                <i class="bi bi-question-square"></i>
+                                <a href="~/@Model!.BriefDetails!.ArchivosCostos" target="_blank">Descargar</a>
+                                //<a href="@Model!.BriefDetails!.ArchivosCostos" target="_blank">Descargar</a>
+                            }
+                        }
+                        else
+                        {
+                            <i class="bi bi-file-earmark-excel-fill"></i>
+                            <span>Sin archivo</span>
+                        }
+                    </div>
+
+                    <div class="mt-2">
+
+                        <label>Archivos para diseño:</label>
+
+                        @if (Model.BriefDetails.ArchivosDesignExist == true)
+                        {
+                            if (Model!.BriefDetails!.ArchivosDesign!.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosDesign.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosDesign.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosDesign.EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-image-fill"></i>
+                                <a href="~/@Model!.BriefDetails!.ArchivosDesign" target="_blank">Ver imagen</a>
+                                //<a href="@Model!.BriefDetails!.ArchivosDesign" target="_blank">Ver imagen</a>
+                            }
+                            else if (Model!.BriefDetails!.ArchivosDesign.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-file-earmark-pdf-fill"></i>
+                                <a href="~/@Model!.BriefDetails!.ArchivosDesign" target="_blank">Ver archivo</a>
+                                //<a href="@Model!.BriefDetails!.ArchivosDesign" target="_blank">Ver archivo</a>
+                            }
+                            else if (Model!.BriefDetails!.ArchivosDesign.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosDesign.EndsWith(".xls", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosDesign.EndsWith(".docx", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ArchivosDesign.EndsWith(".doc", StringComparison.OrdinalIgnoreCase) || Model!.BriefDetails!.ArchivosDesign.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-file-earmark-text-fill"></i>
+                                <a href="~/@Model!.BriefDetails!.ArchivosDesign" target="_blank">Descargar</a>
+                                //<a href="@Model!.BriefDetails!.ArchivosDesign" target="_blank">Descargar</a>
+                            }
+                            else if (Model!.BriefDetails!.ArchivosDesign.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) || Model!.BriefDetails!.ArchivosDesign.EndsWith(".rar", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-file-zip-fill"></i>
+                                <a href="~/@Model!.BriefDetails!.ArchivosDesign" target="_blank">Descargar</a>
+                                //<a href="@Model!.BriefDetails!.ArchivosDesign" target="_blank">Descargar</a>
+                            }
+                            else
+                            {
+                                <i class="bi bi-question-square"></i>
+                                <a href="~/@Model!.BriefDetails!.ArchivosDesign" target="_blank">Descargar</a>
+                                //<a href="@Model!.BriefDetails!.ArchivosDesign" target="_blank">Descargar</a>
+                            }
+                        }
+                        else
+                        {
+                            <i class="bi bi-file-earmark-excel-fill"></i>
+                            <span>Sin archivo</span>
+                        }
+                    </div>
+
+                    <div class="mt-2">
+
+                        <label>Otros archivos:</label>
+
+                        @if (Model.BriefDetails.ImageUrlExist == true)
+                        {
+                            if (Model!.BriefDetails!.ImageUrl!.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ImageUrl.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ImageUrl.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ImageUrl.EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-image-fill"></i>
+                                //<a href="~/@Model!.BriefDetails!.ImageUrl" target="_blank">Ver imagen</a>
+                                <a href="@Model!.BriefDetails!.ImageUrl" target="_blank">Ver imagen</a>
+                            }
+                            else if (Model!.BriefDetails!.ImageUrl.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-file-earmark-pdf-fill"></i>
+                                <a href="~/@Model!.BriefDetails!.ImageUrl" target="_blank">Ver archivo</a>
+                                //<a href="@Model!.BriefDetails!.ImageUrl" target="_blank">Ver archivo</a>
+                            }
+                            else if (Model!.BriefDetails!.ImageUrl.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ImageUrl.EndsWith(".xls", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ImageUrl.EndsWith(".docx", StringComparison.OrdinalIgnoreCase) ||
+                            Model!.BriefDetails!.ImageUrl.EndsWith(".doc", StringComparison.OrdinalIgnoreCase) || Model!.BriefDetails!.ImageUrl!.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-file-earmark-text-fill"></i>
+                                <a href="~/@Model!.BriefDetails!.ImageUrl" target="_blank">Descargar</a>
+                                //<a href="@Model!.BriefDetails!.ImageUrl" target="_blank">Descargar</a>
+                            }
+                            else if (Model!.BriefDetails!.ImageUrl.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) || Model!.BriefDetails!.ImageUrl.EndsWith(".rar", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <i class="bi bi-file-zip-fill"></i>
+                                <a href="~/@Model!.BriefDetails!.ImageUrl" target="_blank">Descargar</a>
+                                //<a href="@Model!.BriefDetails!.ImageUrl" target="_blank">Descargar</a>
+                            }
+                            else
+                            {
+                                <i class="bi bi-question-square"></i>
+                                <a href="~/@Model!.BriefDetails!.ImageUrl" target="_blank">Descargar</a>
+                                //<a href="@Model!.BriefDetails!.ImageUrl" target="_blank">Descargar</a>
+                            }
+                        }
+                        else
+                        {
+                            <i class="bi bi-file-earmark-excel-fill"></i>
+                            <span>Sin archivo</span>
+                        }
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+            @if (Model.PiezasAsociadas != null)
+            {
+                <form method="post" enctype="multipart/form-data">
+
+                    @for (var i = 0; i < Model.PiezasAsociadas.Count; i++)
+                    {
+                        <div class="divider-line mt-5">
+                            <h5 class="d-inline">Pieza <span>@Model.PiezasAsociadas[i].NumeroPieza</span></h5>
+                            <input name="AgregarComoNueva_@Model.PiezasAsociadas[i].Id" class="form-check-input" type="checkbox" required />
+                            <label class="ml-2 d-inline">(Añadir esta pieza)</label>
+                        </div>
+
+                        @Html.HiddenFor(model => @Model.PiezasAsociadas[i].Id)
+
+                        <input type="hidden" name="briefId" value="@Model.BriefDetails.BriefId" />
+
+                        <div class="row">
+
+                            <fieldset class="col-sm-6">
+
+                                <div class="row">
+
+                                    <div class="col-sm-4 mt-1">
+                                        <label for="PiezaName">Nombre de la pieza:</label>
+                                        <input asp-for="@Model.PiezasAsociadas[i].PiezaName" type="text" id="piezaname" class="form-control mt-2" />
+                                    </div>
+
+                                    <div class="col-sm-4 mt-1">
+                                        <label for="CantidadPiezas">Cantidad de piezas:</label>
+                                        <input asp-for="@Model.PiezasAsociadas[i].CantidadPiezas" type="text" id="cantidadpieza" class="form-control mt-2" />
+                                    </div>
+
+                                    <div class="col-sm-4 mt-1">
+                                        <label for="Cargue">Cargue pieza (Kg):</label>
+                                        <input asp-for="@Model.PiezasAsociadas[i].Cargue" type="text" id="cargue" class="form-control mt-2" />
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <fieldset class="col-sm-6">
+
+                                        <div class="divider-line mt-4">
+                                            <h5>Medidas:</h5>
+                                        </div>
+
+                                        <div class="col-sm-12 mt-1">
+                                            <label for="PiezaAlto">Alto:</label>
+                                            <input asp-for="@Model.PiezasAsociadas[i].PiezaAlto" type="text" id="piezaalto" class="form-control" />
+                                        </div>
+                                        <div class="col-sm-12 mt-1">
+                                            <label for="PiezaAncho">Ancho:</label>
+                                            <input asp-for="@Model.PiezasAsociadas[i].PiezaAncho" type="text" id="piezaancho" class="form-control" />
+                                        </div>
+                                        <div class="col-sm-12 mt-1">
+                                            <label for="PiezaFondo">Fondo:</label>
+                                            <input asp-for="@Model.PiezasAsociadas[i].PiezaFondo" type="text" id="piezafondo" class="form-control" />
+                                        </div>
+
+
+                                        <div class="divider-line mt-3">
+                                            <h5>Acabados y accesorios:</h5>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-check form-check">
+                                                <label class="form-check-label" for="Ruedas">Ruedas</label>
+                                                <input asp-for="@Model.PiezasAsociadas[i].Ruedas" class="form-check-input" type="checkbox" id="ruedas" value="true" />
+                                            </div>
+                                            <div class="form-check form-check">
+                                                <label class="form-check-label" for="Niveladores">Niveladores</label>
+                                                <input asp-for="@Model.PiezasAsociadas[i].Niveladores" class="form-check-input" type="checkbox" id="niveladores" value="true" />
+                                            </div>
+                                            <div class="form-check form-check">
+                                                <label class="form-check-label" for="Cromado">Cromado</label>
+                                                <input asp-for="@Model.PiezasAsociadas[i].Cromado" class="form-check-input" type="checkbox" id="cromado" value="true" />
+                                            </div>
+                                            <div class="form-check form-check">
+                                                <label class="form-check-label" for="Zincado">Zincado</label>
+                                                <input asp-for="@Model.PiezasAsociadas[i].Zincado" class="form-check-input" type="checkbox" id="zincado" value="true" />
+                                            </div>
+                                            <div>
+                                                <input asp-for="@Model.PiezasAsociadas[i].AcabadosyAccesoriosInput" type="text" class="form-control mt-2" id="acabadosyaccesorios" placeholder="Otro..." />
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+
+                                    <fieldset class="col-sm-6">
+
+                                        <div class="mt-2">
+
+                                            <div class="mt-3">
+
+                                                <div class="divider-line mt-4">
+                                                    <h5>Material:</h5>
+                                                </div>
+
+                                                <div>
+
+                                                    <div class="row">
+
+                                                        <fieldset class="col-sm-6">
+
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label" for="Tubo">Tubo</label>
+                                                                <input asp-for="@Model.PiezasAsociadas[i].Tubo" class="form-check-input" type="checkbox" id="tubo" value="true" />
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label" for="Alambre">Alambre</label>
+                                                                <input asp-for="@Model.PiezasAsociadas[i].Alambre" class="form-check-input" type="checkbox" id="alambre" value="true" />
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label" for="Lamina">Lámina</label>
+                                                                <input asp-for="@Model.PiezasAsociadas[i].Lamina" class="form-check-input" type="checkbox" id="lamina" value="true" />
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label" for="Madera">Madera</label>
+                                                                <input asp-for="@Model.PiezasAsociadas[i].Madera" class="form-check-input" type="checkbox" id="madera" value="true" />
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label" for="Formica">Fórmica</label>
+                                                                <input asp-for="@Model.PiezasAsociadas[i].Formica" class="form-check-input" type="checkbox" id="formica" value="true" />
+                                                            </div>
+
+                                                        </fieldset>
+
+                                                        <fieldset class="col-sm-6">
+
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label" for="Polietileno$">Polietileno</label>
+                                                                <input asp-for="@Model.PiezasAsociadas[i].Polietileno" class="form-check-input" type="checkbox" id="polietileno" value="true" />
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label" for="Acrilico">Acrílico</label>
+                                                                <input asp-for="@Model.PiezasAsociadas[i].Acrilico" class="form-check-input" type="checkbox" id="acrilico" value="true" />
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label" for="Ps$">PS</label>
+                                                                <input asp-for="@Model.PiezasAsociadas[i].Ps" class="form-check-input" type="checkbox" id="ps" value="true" />
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label" for="Pp">PP</label>
+                                                                <input asp-for="@Model.PiezasAsociadas[i].Pp" class="form-check-input" type="checkbox" id="pp" value="true" />
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label" for="Mdf">MDF</label>
+                                                                <input asp-for="@Model.PiezasAsociadas[i].Mdf" class="form-check-input" type="checkbox" id="mdf" value="true" />
+                                                            </div>
+
+                                                        </fieldset>
+
+                                                    </div>
+
+                                                    <div>
+                                                        <input asp-for="@Model.PiezasAsociadas[i].MaterialInput" type="text" class="form-control mt-3" id="material" placeholder="Otro..." />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="divider-line mt-4">
+                                                <h5>Imagen de referencia:</h5>
+                                            </div>
+
+                                            <div>
+
+                                                @if (!string.IsNullOrEmpty(@Model.PiezasAsociadas[i].ArchivoPieza))
+                                                {
+                                                    if (@Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                                                    @Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                                                    @Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
+                                                    @Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
+                                                    {
+                                                        <i class="bi bi-file-image"></i>
+                                                        //<a href="@Model!.BriefDetails!.RespuestaCostosInput" target="_blank">Ver imagen</a>
+                                                        <a href="@Url.Content("~/" + @Model.PiezasAsociadas[i].ArchivoPieza)" target="_blank">Ver imagen</a>
+                                                    }
+                                                    else if (@Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                                                    {
+                                                        <i class="bi bi-file-earmark-pdf-fill"></i>
+                                                        //<a href="@pieza.ArchivoPieza target="_blank">Ver archivo</a>
+                                                        <a href="@Url.Content("~/" + @Model.PiezasAsociadas[i].ArchivoPieza)" target="_blank">Ver archivo</a>
+                                                    }
+                                                    else if (@Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase) ||
+                                                    @Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".xls", StringComparison.OrdinalIgnoreCase) ||
+                                                    @Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".docx", StringComparison.OrdinalIgnoreCase) ||
+                                                    @Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".doc", StringComparison.OrdinalIgnoreCase) || @Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+                                                    {
+                                                        <i class="bi bi-file-earmark-text-fill"></i>
+                                                        //<a href="@pieza.ArchivoPieza target="_blank">Descargar</a>
+                                                        <a href="@Url.Content("~/" + @Model.PiezasAsociadas[i].ArchivoPieza)" target="_blank">Descargar</a>
+                                                    }
+                                                    else if (@Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) || @Model!.PiezasAsociadas[i]!.ArchivoPieza!.EndsWith(".rar", StringComparison.OrdinalIgnoreCase))
+                                                    {
+                                                        <i class="bi bi-file-earmark-zip-fill"></i>
+                                                        //<a href="@pieza.ArchivoPieza target="_blank">Descargar</a>
+                                                        <a href="@Url.Content("~/" + @Model.PiezasAsociadas[i].ArchivoPieza)" target="_blank">Descargar</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-question-square"></i>
+                                                        //<a href="@pieza.ArchivoPieza target="_blank">Descargar</a>
+                                                        <a href="@Url.Content("~/" + @Model.PiezasAsociadas[i].ArchivoPieza)" target="_blank">Descargar</a>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <i class="bi bi-file-earmark-excel-fill"></i>
+                                                    <span>Sin archivo adjunto</span>
+                                                }
+
+                                                <div>
+                                                    <img src="@Url.Content("~/" + @Model.PiezasAsociadas[i].ArchivoPieza)" alt="Imagen de la Pieza" class="img-fluid" />
+                                                </div>
+
+                                                <input asp-for="@Model.PiezasAsociadas[i].FilePieza" value="@Model.PiezasAsociadas[i].ArchivoPieza" type="text" class="form-control mt-3" id="archivoPieza" hidden />
+
+                                            </div>
+
+                                        </div>
+
+                                    </fieldset>
+
+                                </div>
+
+                            </fieldset>
+
+                            <fieldset class="col-sm-6">
+
+                                <div>
+                                    <div class="col-sm-4 mt-2">
+                                        <label>Contiene publicidad:</label>
+                                    </div>
+                                    <div class="form-check form-check-inline mt-1">
+                                        <input asp-for="@Model.PiezasAsociadas[i].Publicidad" class="form-check-input" type="radio" id="publicidadsi" value="true" />
+                                        <label class="form-check-label" for="publicidadsi">Si</label>
+                                    </div>
+                                    <div class="form-check form-check-inline mt-1">
+                                        <input asp-for="@Model.PiezasAsociadas[i].Publicidad" class="form-check-input" type="radio" id="publicidadno" value="false" />
+                                        <label class="form-check-label" for="publicidadno">No</label>
+                                    </div>
+
+                                    <div id="medidaspublicidad" class="row">
+
+                                        <div class="col-sm-6 mt-2">
+
+                                            <label>Items:</label>
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item1name" type="text" id="item1name" class="form-control" />
+
+                                        </div>
+
+                                        <div class="col-sm-3 mt-2">
+
+                                            <label>Alto:</label>
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item1Alto" type="text" id="item1alto" class="form-control" />
+
+                                        </div>
+
+                                        <div class="col-sm-3 mt-2">
+
+                                            <label>Ancho:</label>
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item1Ancho" type="text" id="item1ancho" class="form-control" />
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-sm-6 mt-1">
+
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item2name" type="text" id="item2name" class="form-control mt-1" />
+
+                                        </div>
+
+                                        <div class="col-sm-3 mt-1">
+
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item2Alto" type="text" id="item2Alto" class="form-control mt-1" />
+
+                                        </div>
+
+                                        <div class="col-sm-3 mt-1">
+
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item2Ancho" type="text" id="item2Ancho" class="form-control mt-1" />
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-sm-6 mt-1">
+
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item3name" type="text" id="item3name" class="form-control mt-1" />
+
+                                        </div>
+
+                                        <div class="col-sm-3 mt-1">
+
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item3Alto" type="text" id="item3name" class="form-control mt-1" />
+
+                                        </div>
+
+                                        <div class="col-sm-3 mt-1">
+
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item3Ancho" type="text" id="item3name" class="form-control mt-1" />
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-sm-6 mt-1">
+
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item4name" type="text" id="item4name" class="form-control mt-1" />
+
+                                        </div>
+
+                                        <div class="col-sm-3 mt-1">
+
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item4Alto" type="text" id="item4name" class="form-control mt-1" />
+
+                                        </div>
+
+                                        <div class="col-sm-3 mt-1">
+
+                                            <input asp-for="@Model.PiezasAsociadas[i].Item4Ancho" type="text" id="item4name" class="form-control mt-1" />
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-sm-6 mt-2 mb-2">
+
+                                        <label for="Tintas">Tíntas:</label>
+                                        <input asp-for="@Model.PiezasAsociadas[i].Tintas" type="text" id="tintas" class="form-control mt-2" />
+
+                                    </div>
+
+                                    <div class="col-sm-6 d-inline-flex mt-4">
+
+                                        <div class="p-1 mt-1">
+                                            <label>Color: </label>
+                                        </div>
+                                        <div class="col-sm-3 mt-2">
+                                            <input asp-for="@Model.PiezasAsociadas[i].Color" class="col-sm-6" type="color" id="color" />
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <fieldset class="col-sm-6">
+
+                                        <div class="divider-line mt-2">
+                                            <h5>Acabados:</h5>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <fieldset class="col-sm-6">
+
+                                                <div class="form-check form-check">
+                                                    <label class="form-check-label" for="Laminado">Laminado</label>
+                                                    <input asp-for="@Model.PiezasAsociadas[i].Laminado" class="form-check-input" type="checkbox" id="laminado" value="true" />
+                                                </div>
+
+                                                <div class="form-check form-check">
+                                                    <label class="form-check-label" for="Troquelado">Troquelado</label>
+                                                    <input asp-for="@Model.PiezasAsociadas[i].Troquelado" class="form-check-input" type="checkbox" id="troquelado" value="true" />
+                                                </div>
+
+                                                <div class="form-check form-check">
+                                                    <label class="form-check-label" for="Refilado">Refilado</label>
+                                                    <input asp-for="@Model.PiezasAsociadas[i].Refilado" class="form-check-input" type="checkbox" id="refilado" value="true" />
+                                                </div>
+
+                                            </fieldset>
+
+                                            <fieldset class="col-sm-6">
+
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label" for="Termodoblado">Termodoblado</label>
+                                                    <input asp-for="@Model.PiezasAsociadas[i].Termodoblado" class="form-check-input" type="checkbox" id="termodoblado" value="true" />
+                                                </div>
+
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label" for="Termoformado">Termoformado</label>
+                                                    <input asp-for="@Model.PiezasAsociadas[i].Termoformado" class="form-check-input" type="checkbox" id="termoformado" value="true" />
+                                                </div>
+
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label" for="Ninguno">Ninguno</label>
+                                                    <input asp-for="@Model.PiezasAsociadas[i].NingunAcabado" class="form-check-input" type="checkbox" id="ninguno" value="true" />
+                                                </div>
+
+                                            </fieldset>
+
+                                        </div>
+
+                                        <input asp-for="@Model.PiezasAsociadas[i].AcabadoInput" class="form-control mt-3" id="acabado" placeholder="Otro..." />
+
+                                    </fieldset>
+
+                                    <fieldset class="col-sm-6">
+
+                                        <div class="divider-line mt-2">
+                                            <h5>Comentarios adicionales:</h5>
+                                        </div>
+
+                                        <div class="mt-1">
+                                            <textarea asp-for="@Model.PiezasAsociadas[i].ComentariosAdicionales" class="form-control mt-1" rows="5">@Model.PiezasAsociadas[i].ComentariosAdicionales</textarea>
+                                        </div>
+
+                                    </fieldset>
+
+                                </div>
+
+                            </fieldset>
+
+                        </div>
+
+                    }
+
+                    <div class="col-sm-2 mt-5">
+                        <button type="submit" class="btn btn-primary">Guardar piezas <i class="bi bi-check-circle" style="color:white"></i></button>
+                    </div>
+
+                </form>
+            }
+
+        </div>
+
+    }
+    else
+    {
+        <p>El brief no existe o fue borrado de la base de datos.</p>
+    }
+
+</div>

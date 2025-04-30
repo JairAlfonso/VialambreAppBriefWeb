@@ -1,0 +1,711 @@
+﻿@page
+@using VialambreAppTest1.Models;
+@model VialambreAppTest1.Pages.Briefs.Client.EditModel
+@{    
+}
+
+<div class="card w-80 shadow-lg mt-3" style="margin:auto">
+    <div class="card-header bg-info text-white" style="font-weight:bold;">
+
+        <span style="font-size: 25px;">Recotizar Brief</span>
+
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="divider-line mt-2">
+                    <h5>Información del cliente</h5>
+                </div>
+
+                <fieldset class="col-sm-6">
+
+                    <div class="mt-1">
+                        <label for="FullName">Nombre:</label>
+                        <input asp-for="BriefDetails!.ClientFullName" type="text" id="FullName" class="form-control mt-2" />
+                    </div>
+                    <div class="mt-1">
+                        <label for="Correo">NIT/ID:</label>
+                        <input asp-for="BriefDetails!.ClientDocument" type="text" id="Document" class="form-control mt-2" />
+                    </div>
+
+                </fieldset>
+
+                <div class="divider-line mt-5">
+                    <h5>Detalles del brief</h5>
+                </div>
+
+                <fieldset class="col-sm-6">
+
+                    <div class="mt-1">
+                        <div class="col-sm-4 mt-2">
+                            <label asp-for="BriefVM!.TipoCotizacion"></label>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <div>
+                                <label>Nueva</label>
+                                <input asp-for="BriefDetails!.TipoCotizacion" class="form-check-input" type="radio" id="nuevaCotizacion" value="NuevaCotizacion">
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <label>Montaje</label>
+                                <input asp-for="BriefDetails!.TipoCotizacion" class="form-check-input" type="radio" id="montaje" value="Montaje">
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <label>Licitacion</label>
+                                <input asp-for="BriefDetails!.TipoCotizacion" class="form-check-input" type="radio" id="licitacion" value="Licitacion">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <input asp-for="BriefDetails!.Title" type="text" class="form-control mt-2" placeholder="Nombre de la Campaña" />
+                        <span asp-validation-for="BriefVM!.Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-1">
+                        <input asp-for="BriefDetails!.Marca" type="text" class="form-control mt-2" placeholder="Nombre de la marca" />
+                        <span asp-validation-for="BriefVM!.Marca" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-1">
+                        <textarea asp-for="BriefDetails!.Description" class="form-control mt-2" rows="4" placeholder="Descripción..."></textarea>
+                    </div>
+
+                    <div class="mt-1">
+                        <div class="col-sm-3 mt-2">
+                            <label asp-for="BriefVM!.Producto"></label>
+                        </div>
+                        <div class="col-sm-12 mt-1">
+                            <select asp-for="BriefDetails!.Producto" asp-items="Model.GetProducts" class="form-control"><option selected>--Seleccione producto--</option></select>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <input asp-for="BriefDetails!.NewProducto" class="form-check-input" type="checkbox" id="newproduct" name="NewProduct" value="true">
+                            <label class="form-check-label" for="otro">Otro</label>
+                        </div>
+                        <div>
+                            <input asp-for="BriefDetails!.Producto" type="text" class="form-control mt-1" id="productInput" placeholder="¿Cuál?" />
+                        </div>
+                    </div>
+
+                    <div class="mt-1">
+                        <div class="col-sm-3 mt-2">
+                            <label asp-for="BriefVM!.FechaRequerida"></label>
+                        </div>
+                        <div>
+                            <input asp-for="BriefDetails!.FechaRequerida" type="date" class="form-control mt-2" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-sm-3 mt-2">
+                            <label asp-for="BriefVM!.EntregarEn"></label>
+                        </div>
+                        <div class="col-sm-12 mt-1">
+                            <select asp-for="BriefDetails!.EntregarEn" asp-items="Model.GetLugarEntregas" class="form-control"><option selected>--Seleccione lugar de entrega--</option></select>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <input asp-for="BriefDetails!.NewLugarEntrega" class="form-check-input" type="checkbox" id="newlugarentrega" name="NewLugarEntrega" value="true">
+                            <label class="form-check-label" for="otro">Otro</label>
+                        </div>
+                        <div>
+                            <input asp-for="BriefDetails!.EntregarEn" type="text" class="form-control mt-1" id="lugarentregaInput" placeholder="¿Cuál?" />
+                        </div>
+                    </div>
+
+                    <div class="mt-1">
+                        <textarea asp-for="BriefDetails!.ComentariosAdicionales" class="form-control mt-2" rows="4" placeholder="Comentarios adicionales..."></textarea>
+                    </div>
+
+                    <div class="divider-line mt-3">
+                        <h5>Información suministrada:</h5>
+                    </div>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="KeyVisual">KeyVisual</label>
+                            <input asp-for="BriefDetails!.KeyVisual" name="KeyVisual" class="form-check-input" type="checkbox" id="keyvisual" />
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="Artes">Artes</label>
+                            <input asp-for="BriefDetails!.Artes" name="Artes" class="form-check-input" type="checkbox" id="artes" />
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="Planos">Planos</label>
+                            <input asp-for="BriefDetails!.Planos" name="Planos" class="form-check-input" type="checkbox" id="cromado" />
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="Logos">Logos</label>
+                            <input asp-for="BriefDetails!.Logos" name="Logos" class="form-check-input" type="checkbox" id="zincado" />
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="Manualmarca">ManualMarca</label>
+                            <input asp-for="BriefDetails!.ManualMarca" name="ManualMarca" class="form-check-input" type="checkbox" id="manualmarca" />
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="Boceto">Boceto</label>
+                            <input asp-for="BriefDetails!.Boceto" name="Boceto" type="checkbox" class="form-check-input" id="boceto" />
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="Muestrafisica">MuestraFisica</label>
+                            <input asp-for="BriefDetails!.MuestraFisica" name="MuestraFisica" type="checkbox" class="form-check-input" id="muestragrafica" />
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="Imagenreferencia">ImagenReferencia</label>
+                            <input asp-for="BriefDetails!.ImagenReferencia" name="ImagenReferencia" type="checkbox" class="form-check-input" id="imagenreferencia" />
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="Ninguna">Ningúna</label>
+                            <input asp-for="BriefDetails!.Ninguna" name="Ninguna" type="checkbox" class="form-check-input" id="ninguna" />
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <fieldset class="col-sm-6">
+
+                    <div>
+                        <div class="col-sm-3 mt-2">
+                            <label asp-for="BriefVM!.Design"></label>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <div>
+                                <label>Si</label>
+                                <input asp-for="BriefDetails!.Design" class="form-check-input" type="radio" id="diseño" value="true">
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <label>No</label>
+                                <input asp-for="BriefDetails!.Design" class="form-check-input" type="radio" id="diseño" value="false">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-sm-3 mt-2">
+                            <label asp-for="BriefVM!.Costos"></label>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <div>
+                                <label>Si</label>
+                                <input asp-for="BriefDetails!.Costos" class="form-check-input" type="radio" id="Costos" value="true">
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <label>No</label>
+                                <input asp-for="BriefDetails!.Costos" class="form-check-input" type="radio" id="Costos" value="false">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-sm-3 mt-2">
+                            <label asp-for="BriefVM!.Linea"></label>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <div>
+                                <label>Institucional</label>
+                                <input asp-for="BriefDetails!.Linea" class="form-check-input" type="radio" id="institucional" value="Institucional">
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <label>Retail</label>
+                                <input asp-for="BriefDetails!.Linea" class="form-check-input" type="radio" id="retail" value="Retail">
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <label>E-Commerce</label>
+                                <input asp-for="BriefDetails!.Linea" class="form-check-input" type="radio" id="eCommerce" value="E-Commerce">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-sm-3 mt-2">
+                            <label asp-for="BriefVM!.UnidadesInput"></label>
+                        </div>
+                        <div class="col-sm-12 mt-1">
+                            <div class="form-check form-check-inline">
+                                <input asp-for="BriefDetails!.EsCantidadUnica" name="EsCantidadUnica" class="form-check-input" type="checkbox" id="unica">
+                                <label class="form-check-label" for="unica">Cantidad única</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input asp-for="BriefDetails!.EsEscala" name="EsEscala" class="form-check-input" type="checkbox" id="escala">
+                                <label class="form-check-label" for="escala">Escala</label>
+                            </div>
+                            <div>
+                                <input asp-for="BriefDetails!.UnidadesInput" type="text" class="form-control mt-2" id="unidades" placeholder="Ingrese la cantidad de unidades" />
+                            </div>
+                            <div>
+                                <input asp-for="BriefDetails!.EscalaInput" type="text" class="form-control mt-2" id="escalas" placeholder="Ingrese una escala ejm. 1-1000" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-sm-4 mt-2">
+                            <label asp-for="BriefVM!.Instalacion"></label>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <div>
+                                <label>Si</label>
+                                <input asp-for="BriefDetails!.Instalacion" class="form-check-input" type="radio" id="instalacionSi" value="true">
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <div>
+                                <label>No</label>
+                                <input asp-for="BriefDetails!.Instalacion" class="form-check-input" type="radio" id="instalacionNo" value="false">
+                            </div>
+                        </div>
+                        <div>
+                            <input asp-for="BriefDetails!.DireccionInstalacion" type="text" class="form-control mt-2" id="direccioninstalacion" placeholder="Dirección de instalación" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-sm-3 mt-2">
+                            <label asp-for="BriefVM!.CanalVenta"></label>
+                        </div>
+                        <div class="col-sm-12 mt-1">
+                            <div class="form-check form-check-inline">
+                                <input asp-for="BriefDetails!.CanalVenta" class="form-check-input" type="radio" id="moderno" name="canalVenta" value="Moderno">
+                                <label class="form-check-label" for="moderno">Moderno</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input asp-for="BriefDetails!.CanalVenta" class="form-check-input" type="radio" id="tradicional" name="canalVenta" value="Tradicional">
+                                <label class="form-check-label" for="tradicional">Tradicional</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input asp-for="BriefDetails!.EsCanalVenta" name="EsCanalVenta" class="form-check-input" type="checkbox" id="otrocanal" value="true">
+                                <label class="form-check-label" for="otro">Otro</label>
+                            </div>
+                            <div>
+                                <input asp-for="BriefDetails!.CanalVentaInput" type="text" class="form-control mt-2" id="CanalVentaInput" placeholder="¿Cuál?" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-sm-3 mt-2">
+                            <label asp-for="BriefVM!.TipoEmpaque"></label>
+                        </div>
+                        <div class="col-sm-12 mt-1">
+                            <select asp-for="BriefDetails!.TipoEmpaque" asp-items="Model.GetEmpaques" class="form-control"><option selected>--Seleccione empaque--</option></select>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <input asp-for="BriefDetails!.NewEmpaque" class="form-check-input" type="checkbox" id="newempaque" name="NewEmpaque" value="true">
+                            <label class="form-check-label" for="otro">Otro</label>
+                        </div>
+                        <div>
+                            <input asp-for="BriefDetails!.TipoEmpaque" type="text" class="form-control mt-1" id="empaqueInput" placeholder="¿Cuál?" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-sm-12 mt-2">
+                            <div>
+                                <label asp-for="BriefVM!.PresupuestoUnidad"></label>
+                            </div>
+                            <div class="col-sm-4 mt-1">
+                                <input class="form-control col-sm-6" type="number" asp-for="BriefDetails!.PresupuestoUnidad" placeholder="$100000" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-sm-12 mt-2">
+                            @* <div>
+                                <label asp-for="BriefVM!.ValorTotalCotizado"></label>
+                            </div> *@
+                            @* <div class="col-sm-4 mt-1">
+                                <input class="form-control col-sm-6" type="number" asp-for="BriefDetails!.ValorTotalCotizado" placeholder="$1000000" />
+                            </div> *@
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-sm-4 mt-2">
+                            <label>Archivos para costos:</label>
+                        </div>
+
+                        <div class="form-check form-check-inline mt-1">
+                            <input asp-for="BriefVM!.ArchivosCostosExist" class="form-check-input" type="radio" id="archivoscostossi" value="true">
+                            <label class="form-check-label" for="otro">Si</label>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <input asp-for="BriefVM!.ArchivosCostosExist" class="form-check-input" type="radio" id="archivoscostosno" value="false" checked>
+                            <label class="form-check-label" for="otro">No</label>
+                        </div>
+                        <div>
+                            <input asp-for="BriefVM!.FileCostos" type="file" id="archivoscostosInput" class="form-control mt-2" onchange="DisplayArchivosCostos(event)" />
+                            <div class="mt-3">
+                                <img src="" id="archivoscostosview" class="w-25 img-thumbnail" />
+                            </div>
+                        </div>
+                                               
+                    </div>
+
+                    <div>
+                        <div class="col-sm-4 mt-2">
+                            <label>Archivos para diseño:</label>
+                        </div>
+
+                        <div class="form-check form-check-inline mt-1">
+                            <input asp-for="BriefVM!.ArchivosDesignExist" class="form-check-input" type="radio" id="archivosdesignsi" value="true">
+                            <label class="form-check-label" for="otro">Si</label>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <input asp-for="BriefVM!.ArchivosDesignExist" class="form-check-input" type="radio" id="archivosdesignno" value="false" checked>
+                            <label class="form-check-label" for="otro">No</label>
+                        </div>
+                        <div>
+                            <input asp-for="BriefVM!.FileDesign" type="file" id="archivosdesignInput" class="form-control mt-2" onchange="DisplayArchivosDesign(event)" />
+                            <div class="mt-3">
+                                <img src="" id="archivosdesignview" class="w-25 img-thumbnail" />
+                            </div>
+                        </div>
+                                               
+                    </div>
+
+                    <div>
+                        <div class="col-sm-4 mt-2">
+                            <label>Otros archivos:</label>
+                        </div>
+
+                        <div class="form-check form-check-inline mt-1">
+                            <input asp-for="BriefVM!.ImageUrlExist" class="form-check-input" type="radio" id="otrosarchivossi" value="true">
+                            <label class="form-check-label" for="otro">Si</label>
+                        </div>
+                        <div class="form-check form-check-inline mt-1">
+                            <input asp-for="BriefVM!.ImageUrlExist" class="form-check-input" type="radio" id="otrosarchivosno" value="false" checked>
+                            <label class="form-check-label" for="otro">No</label>
+                        </div>
+                        <div>
+                            <input asp-for="BriefVM!.FileOtros" type="file" id="otrosarchivosInput" class="form-control mt-2" onchange="OtrosArchivos(event)" />
+                            <div class="mt-3">
+                                <img src="" id="otrosarchivosview" class="w-25 img-thumbnail" />
+                            </div>
+                        </div>
+                                               
+                    </div>
+
+                </fieldset>               
+             
+            </div>
+
+        </div>
+        <div class="card-footer text-muted">
+
+            <a asp-page="/Briefs/Client/Realizadas" asp-route-id="@Model!.BriefDetails!.BriefId" class="btn btn-secondary">Cancelar <i class="bi bi-x-circle" style="color:white"></i></a>
+            <button type="submit" class="btn btn-primary">Recotizar <i class="bi bi-check-circle" style="color:white"></i></button>
+
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    @* //scripts para mostrar imagen previa *@
+
+    <script type="text/javascript">
+        function DisplayArchivosCostos(event) {
+            var archivosCostosInput = document.getElementById('archivoscostosInput');
+            var archivosCostosView = document.getElementById('archivoscostosview');
+
+            archivosCostosView.src = URL.createObjectURL(archivosCostosInput.files[0]);
+        }
+    </script>
+
+    <script type="text/javascript">
+        function DisplayArchivosDesign(event) {
+            var archivosDesignInput = document.getElementById('archivosdesignInput');
+            var archivosDesignView = document.getElementById('archivosdesignview');
+
+            archivosDesignView.src = URL.createObjectURL(archivosDesignInput.files[0]);
+        }
+    </script>
+
+    <script type="text/javascript">
+        function OtrosArchivos(event) {
+            var OtrosarchivosInput = document.getElementById('otrosarchivosInput');
+            var OtrosarchivosView = document.getElementById('otrosarchivosview');
+
+            OtrosarchivosView.src = URL.createObjectURL(OtrosarchivosInput.files[0]);
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            var unidadesInput = document.getElementById("unidades");
+            var escalasInput = document.getElementById("escalas");
+            var unicaRadio = document.getElementById("unica");
+            var escalaRadio = document.getElementById("escala");
+
+            // Ocultar el campo de entrada al cargar la página
+            unidadesInput.style.display = "none";
+            escalasInput.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            unicaRadio.addEventListener("change", function () {
+                unidadesInput.style.display = this.checked ? "block" : "none";
+                escalasInput.style.display = this.checked ? "none" : "block";
+                if (this.checked) {
+                    escalaRadio.checked = false;
+                }
+            });
+
+            escalaRadio.addEventListener("change", function () {
+                escalasInput.style.display = this.checked ? "block" : "none";
+                unidadesInput.style.display = this.checked ? "none" : "block";
+                if (this.checked) {
+                    unicaRadio.checked = false;
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var CanalVentaInput = document.getElementById("CanalVentaInput");
+            var otroCanal = document.getElementById("otrocanal");
+
+            // Ocultar el campo de entrada al cargar la página
+            CanalVentaInput.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            otroCanal.addEventListener("change", function () {
+                CanalVentaInput.style.display = this.checked ? "block" : "none";
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var productInput = document.getElementById("productInput");
+            var newproduct = document.getElementById("newproduct");
+
+            // Ocultar el campo de entrada al cargar la página
+            productInput.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            newproduct.addEventListener("change", function () {
+                productInput.style.display = this.checked ? "block" : "none";
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var empaqueInput = document.getElementById("empaqueInput");
+            var newempaque = document.getElementById("newempaque");
+
+            // Ocultar el campo de entrada al cargar la página
+            empaqueInput.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            newempaque.addEventListener("change", function () {
+                empaqueInput.style.display = this.checked ? "block" : "none";
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var lugarEntregaInput = document.getElementById("lugarentregaInput");
+            var newLugarEntrega = document.getElementById("newlugarentrega");
+
+            // Ocultar el campo de entrada al cargar la página
+            lugarentregaInput.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            newLugarEntrega.addEventListener("change", function () {
+                lugarentregaInput.style.display = this.checked ? "block" : "none";
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var DireccionInput = document.getElementById("direccioninstalacion");
+            var InstalacionSi = document.getElementById("instalacionSi");
+            var InstalacionNo = document.getElementById("instalacionNo");
+
+            // Ocultar el campo de entrada al cargar la página
+            DireccionInput.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            InstalacionSi.addEventListener("change", function () {
+                DireccionInput.style.display = this.checked ? "block" : "none";
+            });
+
+            InstalacionNo.addEventListener("change", function () {
+                DireccionInput.style.display = this.checked ? "none" : "block";
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var PublicidadSi = document.getElementById("publicidadsi");
+            var MedidasPublicidad = document.getElementById("medidaspublicidad");
+
+            // Ocultar el campo de entrada al cargar la página
+            MedidasPublicidad.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            PublicidadSi.addEventListener("change", function () {
+                // Mostrar u ocultar los campos de entrada
+                MedidasPublicidad.style.display = this.checked ? "block" : "none";
+            });
+        });
+    </script>
+
+
+    @* //scripts para archivos *@
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var ArchivosDesignInput = document.getElementById("archivosdesignInput");
+            var ArchivosDesignSi = document.getElementById("archivosdesignsi");
+            var ArchivosDesignNo = document.getElementById("archivosdesignno");
+            var VistaArchivosDesign = document.getElementById("archivosdesignview");
+
+            // Ocultar el campo de entrada al cargar la página
+            ArchivosDesignInput.style.display = "none";
+            VistaArchivosDesign.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            ArchivosDesignSi.addEventListener("change", function () {
+                // Mostrar u ocultar el campo de entrada de imagen y la vista de imagen
+                ArchivosDesignInput.style.display = this.checked ? "block" : "none";
+                VistaArchivosDesign.style.display = this.checked ? "block" : "none";
+            });
+
+            ArchivosDesignNo.addEventListener("change", function () {
+                // Mostrar u ocultar el campo de entrada de imagen y la vista de imagen
+                ArchivosDesignInput.style.display = this.checked ? "none" : "block";
+                VistaArchivosDesign.style.display = this.checked ? "none" : "block";
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var ArchivosCostosInput = document.getElementById("archivoscostosInput");
+            var ArchivosCostosSi = document.getElementById("archivoscostossi");
+            var ArchivosCostosNo = document.getElementById("archivoscostosno");
+            var VistaArchivosCostos = document.getElementById("archivoscostosview");
+
+            // Ocultar el campo de entrada al cargar la página
+            ArchivosCostosInput.style.display = "none";
+            VistaArchivosCostos.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            ArchivosCostosSi.addEventListener("change", function () {
+                // Mostrar u ocultar el campo de entrada de imagen y la vista de imagen
+                ArchivosCostosInput.style.display = this.checked ? "block" : "none";
+                VistaArchivosCostos.style.display = this.checked ? "block" : "none";
+            });
+
+            ArchivosCostosNo.addEventListener("change", function () {
+                // Mostrar u ocultar el campo de entrada de imagen y la vista de imagen
+                ArchivosCostosInput.style.display = this.checked ? "none" : "block";
+                VistaArchivosCostos.style.display = this.checked ? "none" : "block";
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var ImageUrlInput = document.getElementById("otrosarchivosInput");
+            var ImageUrlSi = document.getElementById("otrosarchivossi");
+            var ImageUrlNo = document.getElementById("otrosarchivosno");
+            var VistaImageUrl = document.getElementById("otrosarchivosview");
+
+            // Ocultar el campo de entrada al cargar la página
+            ImageUrlInput.style.display = "none";
+            VistaImageUrl.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            ImageUrlSi.addEventListener("change", function () {
+                ImageUrlInput.style.display = this.checked ? "block" : "none";
+                VistaImageUrl.style.display = this.checked ? "block" : "none";
+            });
+
+            ImageUrlNo.addEventListener("change", function () {
+                // Mostrar u ocultar el campo de entrada de imagen y la vista de imagen
+                ImageUrlInput.style.display = this.checked ? "none" : "block";
+                VistaImageUrl.style.display = this.checked ? "none" : "block";
+            });
+        });
+    </script>
+
+
+    @* //scripts de pieza *@
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var newMaterial = document.getElementById("otromaterial");
+            var materialInput = document.getElementById("materialinput");
+
+            // Ocultar el campo de entrada al cargar la página
+            materialInput.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            newMaterial.addEventListener("change", function () {
+                materialInput.style.display = this.checked ? "block" : "none";
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var newAcabado = document.getElementById("otroacabado");
+            var acabadoInput = document.getElementById("acabadoinput");
+
+            // Ocultar el campo de entrada al cargar la página
+            acabadoInput.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            newAcabado.addEventListener("change", function () {
+                acabadoInput.style.display = this.checked ? "block" : "none";
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var newAcabadoyaccesorios = document.getElementById("otroacabadosyaccesorios");
+            var acabadosyaccesoriosInput = document.getElementById("acabadosyaccesoriosinput");
+
+            // Ocultar el campo de entrada al cargar la página
+            acabadosyaccesoriosInput.style.display = "none";
+
+            // Manejar eventos de cambio en los radios
+            newAcabadoyaccesorios.addEventListener("change", function () {
+                acabadosyaccesoriosInput.style.display = this.checked ? "block" : "none";
+            });
+        });
+    </script>
+
+}

@@ -1,0 +1,55 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Employee.Costos.EditarRespuestaModel
+@{
+}
+
+<div class="card w-80 shadow-lg mt-3" style="margin:auto">
+    <div class="card-header bg-info text-white" style="font-weight:bold;">
+
+        <span style="font-size: 25px;">Propuesta de costos: @Model!.BriefDetails!.Consecutivo</span>
+
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="mt-2">
+                    <div>
+                        <label for="valorTotalCotizado">Valor total cotizado:</label>
+                    </div>
+                    <div class="mt-1">
+                        <input asp-for="BriefVM!.ValorTotalCotizado" type="text" class="form-control" placeholder="$" />
+                        <span asp-validation-for="BriefVM!.ValorTotalCotizado" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mt-1">
+                    <label for="Description">Respuesta:</label>
+                    <textarea asp-for="BriefVM!.RespuestaCostos" class="form-control mt-2" rows="4" placeholder="Descripción de la cotización..."></textarea>
+                </div>
+
+                <div>
+                    <div class="col-sm-4 mt-3">
+                        <label>Archivo adjunto:</label>
+                    </div>
+                    <div>
+                        <input type="file" name="FileRespCostos" class="form-control mt-2" />
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-footer text-muted">
+
+            <a asp-page="/Briefs/Employee/Costos/Details" asp-route-id="@Model!.BriefDetails!.BriefId" class="btn btn-secondary"><i class="bi bi-x-circle" style="color:white"></i> Cancelar</a>
+
+            <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle" style="color:white"></i> Enviar</button>
+
+        </div>
+
+    </form>
+
+</div>

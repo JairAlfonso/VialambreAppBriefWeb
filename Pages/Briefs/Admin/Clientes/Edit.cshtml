@@ -1,0 +1,43 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Admin.Clientes.EditModel
+@{
+}
+
+<div class="card shadow-lg mx-auto mt-5" style="max-width: 400px;">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-5 mt-2 mx-4">
+                <h5 class="card-title fw-bold pt-2"><i class="bi bi-person-circle"> Clientes</i></h5>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form method="post">
+
+            @*se envia campo oculto*@
+            <input type="hidden" asp-for="Cliente!.Id" />
+
+            <div class="mx-auto my-4 col-xl-8">
+                <div class="mt-2">
+                    <div class="">
+                        <label asp-for="Cliente!.Name" class="form-label me-2">Nombre del Cliente</label>
+                        <input asp-for="Cliente!.Name" class="form-control" placeholder="Nombre del Cliente" />
+                    </div>
+                    <span asp-validation-for="Cliente!.Name" class="text-danger"></span>
+                </div>
+                <div class="mt-2">
+                    <div class="">
+                        <label asp-for="Cliente!.Document" class="form-label me-2">Documento del Cliente</label>
+                        <input asp-for="Cliente!.Document" class="form-control" placeholder="Documento del Cliente" />
+                    </div>
+                    <span asp-validation-for="Cliente!.Document" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-2"><i class="bi bi-check-circle " style="color:white"></i> Editar</button>
+
+                <a asp-page="/Briefs/Admin/Clientes/Index" class="btn btn-secondary mt-2"><i class="bi bi-x-circle" style="color:white"></i> Cancelar</a>
+                
+            </div>
+        </form>
+    </div>
+</div>

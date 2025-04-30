@@ -1,0 +1,82 @@
+﻿@page
+@using VialambreAppTest1.Utility;
+@model VialambreAppTest1.Pages.Briefs.Employee.Design.PendientesModel
+@{
+}
+<div class="container mt-1 mx-auto">
+    <div class="card shadow-lg">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Cotizaciones pendientes</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                @if (Model.DesignBriefs?.Count() > 0)
+                {
+                    <div class="table-responsive">
+                        <table id="briefscostos" class="table table-bordered table-hover table-striped" aria-label="Tabla de cotizaciones pendientes">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).Consecutivo)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).ClientFullName)</th>
+                                    <th scope="col" class="truncate">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).Title)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).CreateDate)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).FechaRequerida)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).DesignerAsignado)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).StatusDesign)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).CosteadorAsignado)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefsList!.ElementAt(0).StatusCostos)</th>
+                                    <th scope="col" class="col-sm-1">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var brief in Model.DesignBriefs)
+                                {
+                                    <tr>
+                                        <td class="truncate">@brief.Consecutivo</td>
+                                        <td class="truncate">@brief.ClientFullName</td>
+                                        <td class="truncate">@brief.Title</td>
+                                        <td class="truncate">@brief.CreateDate.ToString("d/MM/yyyy")</td>
+                                        <td class="truncate">@brief.FechaRequerida.ToString("d/MM/yyyy")</td>
+                                        <td class="truncate">@brief.DesignerAsignado</td>
+                                        <td class="truncate status-@(brief.StatusDesign.ToString().ToLower() ?? "")">@brief.StatusDesign</td>
+                                        <td >@brief.CosteadorAsignado</td>
+                                        <td class=" truncate status-@(brief.StatusCostos.ToString().ToLower() ?? "")">@brief.StatusCostos</td>
+                                        <td>
+                                            <div class="btn-group-sm" role="group">
+                                                <a asp-route-id="@brief.BriefId" asp-page="Details" title="Ver detalles del brief" class="btn btn-outline-info btn-sm"><i class="bi bi-eye-fill"></i></a>
+                                                <a asp-route-id="@brief.BriefId" asp-page-handler="Asignar" title="Asignarme este brief" class="btn btn-outline-success btn-sm"><i class="bi bi-plus-lg"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center">No hay Briefs pendientes</p>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="~/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/js/dataTablesConfig.js"></script>
+<!-- script para cambiar los estilos de acuerdo al estado -->
+<script src="~/js/script.js" defer></script>
+<script src="~/js/desing/entregadas.js" defer></script>
+@if (Model.DesignBriefs?.Count() > 0)
+{
+  <script>
+    $(document).ready(function () {
+      var pendientesCount = @Model.DesignBriefs.Count();
+      toastr.warning('¡Tienes ' + pendientesCount + ' cotizacion pendiente!', 'Atención', { timeOut: 30000, positionClass: 'toast-top-center' });
+     });
+
+  </script>
+}
+
+

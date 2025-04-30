@@ -1,0 +1,74 @@
+﻿@page
+@model VialambreAppTest1.Pages.Briefs.Employee.Costos.RealizadasModel
+
+<div class="container mt-1 mx-auto">
+    <div class="card shadow-lg">
+        <div class="card-header bg-info text-white">
+            <h4>Cotizaciones Aceptadas</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                @if (Model.BriefsCostos?.Any() == true)
+                {
+                    <div class="table-responsive">
+                        <table id="briefscostos" class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr class="thead-dark">
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().Consecutivo)</th>
+                                    <th scope="col">@Html.DisplayNameFor(m => m.BriefVM!.First().ClientFullName)</th>
+                                    <th scope="col">@Html.DisplayNameFor(m => m.BriefVM!.First().Title)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().CreateDate)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().DesignerAsignado)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().StatusDesign)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().CosteadorAsignado)</th>
+                                    <th scope="col" class="truncate col-sm-1">@Html.DisplayNameFor(m => m.BriefVM!.First().StatusCostos)</th>
+                                    <th scope="col" class="truncate col-sm-1">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var brief in Model.BriefsCostos)
+                                {
+                                    <tr>
+                                        <td class="truncate">@brief.Consecutivo</td>
+                                        <td class="truncate">@brief.ClientFullName</td>
+                                        <td class="truncate">@brief.Title</td>
+                                        <td class="truncate">@brief.CreateDate.ToString("dd/MM/yyyy")</td>
+                                        <td class="truncate">@brief.DesignerAsignado</td>
+                                        <td class="status-@(brief.StatusDesign.ToString().ToLower() ?? "")">@brief.StatusDesign</td>
+                                        <td class="truncate">@brief.CosteadorAsignado</td>
+                                        <td class="status-@(brief.StatusCostos.ToString().ToLower() ?? "")">@brief.StatusCostos</td>
+                                        <td class="truncate">
+                                            <div>
+                                                <a asp-route-Id="@brief.BriefId" asp-page="Details" title="Ver detalles del brief" class="btn btn-outline-info btn-sm"><i class="bi bi-eye-fill"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p>No hay Briefs aceptados</p>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="~/js/dataTables.bootstrap5.min.js"></script>
+<script src="~/js/dataTablesConfig.js"></script>
+<!-- Agregar el siguiente script para cambiar los estilos de acuerdo al estado -->
+<script src="~/js/script.js" defer></script>
+@if (Model.BriefsCostos?.Count() > 0)
+{
+    <script>
+        $(document).ready(function () {
+            var CostosCount = @Model.BriefsCostos.Count();
+            toastr.warning('¡Tienes ' + CostosCount + ' cotizacion Aceptadas!', 'Atención', { timeOut: 30000, positionClass: 'toast-top-center' });
+        });
+    </script>
+
+}
