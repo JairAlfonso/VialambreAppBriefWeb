@@ -96,10 +96,6 @@ namespace VialambreAppTest1.Models
 
         public int? PresupuestoUnidad { get; set; }
 
-        //[Required(ErrorMessage = "El valor total cotizado es obligatorio.")]
-        //[Range(0, double.MaxValue, ErrorMessage = "El valor no puede ser negativo.")]
-        //public decimal ValorTotalCotizado { get; set; } = 0;
-
         public decimal? ValorTotalCotizado { get; set; }
 
         public bool? ArchivosCostosExist { get; set; }
